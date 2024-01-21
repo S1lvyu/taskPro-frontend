@@ -2,14 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
+import { App } from "./App";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+	<React.StrictMode>
     <Provider store={store}>
-      <App />
+				<BrowserRouter basename="/TaskPro">
+					<App />
+				</BrowserRouter>
     </Provider>
-  </React.StrictMode>
+	</React.StrictMode>
 );
