@@ -3,10 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
+//import { useDispatch, useSelector } from "react-redux";
 import { SharedLayoutStart } from "./components/SharedLayoutStart/SharedLayoutStart";
 import { Home } from "./pages/Home/Home";
 import  NotFoundPage  from "./pages/NotFoundPage/NotFoundPage";
-import { ToastContainer } from "react-toastify";
+//import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//import { getIsRefresh } from "store/user/selectorsAuth";
+//import { refreshUser } from "store/user/operationAuth";
 
 const StartPage = lazy(() => import("./pages/Start/Start"));
 const AuthPage = lazy(() => import("./pages/Auth/Auth"));
@@ -16,6 +21,12 @@ const ScreensPage = lazy(() => import("./pages/ScreensPage/ScreensPage"));
 const BlankPage = lazy(() => import("./pages/BlankPage/BlankPage"));
 
 export const App = () => {
+	//const dispatch = useDispatch();
+	///const isRefresh = useSelector(getIsRefresh);
+
+	// useEffect(() => {
+	// 	dispatch(refreshUser());
+	// }, [dispatch]);
 	return (
 		<>
 			<Routes>
@@ -47,7 +58,7 @@ export const App = () => {
 				</Route>
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
-			<ToastContainer
+			{/* <ToastContainer
 				position="top-right"
 				autoClose={5000}
 				hideProgressBar={false}
@@ -58,7 +69,7 @@ export const App = () => {
 				draggable
 				pauseOnHover
 				theme="dark"
-			/>
+			/> */}
 		</>
 	);
 };

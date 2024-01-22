@@ -3,10 +3,10 @@ import { StartContainer } from '../../components/StartContainer/StartContainer';
 
 const Auth = () => {
   return (
-    <StartContainer>
-      <AuthSection />
-    </StartContainer>
-  );
+		<StartContainer>
+			<AuthSection />
+		</StartContainer>
+	);
 };
 
 export default Auth;

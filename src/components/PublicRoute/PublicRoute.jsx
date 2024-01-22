@@ -1,13 +1,11 @@
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-//import { getIsAuthenticated } from "redux/selectors";
+import { getIsAuthenticated } from "../../redux/selectors";
 
 export const PublicRoute = ({ children }) => {
-  //const isAuth = useSelector(getIsAuthenticated);
+  const isAuth = useSelector(getIsAuthenticated);
 
   return (
-  //isAuth ? 
-  <Navigate to="/home" /> 
-  //: children;
+  isAuth ? <Navigate to="/home" /> : children
   )
 };
