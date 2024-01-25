@@ -5,6 +5,7 @@ import styles from "../BoardsList/boardslist.module.css";
 
 //*BoardsList component*
 export default function BoardsList() {
+  console.log("Rendering BoardsList");
   const [boards, setBoards] = useState([]);
 
   const handleNewBoard = (name) => {
@@ -34,7 +35,6 @@ export default function BoardsList() {
           onDelete={() => handleDeleteBoard(index)}
         />
       ))}
-      <NewBoardButton onNewBoard={handleNewBoard} />
     </div>
   );
 }

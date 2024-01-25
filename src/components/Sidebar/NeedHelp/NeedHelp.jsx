@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Modal from "../Modal/Modal";
+import Modal from "../Modal/Modal";
 import styles from "../NeedHelp/needhelp.module.css";
 import img from "../../../assets/img/plantImg/plant.png";
 import svgSprite from "../.././../assets/svg/symbol-defs.svg";
@@ -15,6 +15,14 @@ export default function NeedHelp() {
   const handleClose = () => {
     setIsOpen(false);
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = event.target.elements[0].value;
+    const comment = event.target.elements[1].value;
+
+    console.log(`Email: ${email}, Comment: ${comment}`);
+    handleClose();
+  };
 
   return (
     <div className={styles.helpcontainer}>
@@ -29,13 +37,14 @@ export default function NeedHelp() {
         </svg>
         Need help?
       </button>
-      {/* <Modal isOpen={isOpen} onClose={handleClose}>
-        Replace here with our HelpModal
-        <form>
-          <input type="text" placeholder="Your question" />
-          <button type="submit">Submit</button>
+      <Modal isOpen={isOpen} onClose={handleClose}>
+        {/* Replace here with our HelpModal */}
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Email adress" />
+          <input type="text" placeholder="Comment" />
+          <button type="submit">Send</button>
         </form>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

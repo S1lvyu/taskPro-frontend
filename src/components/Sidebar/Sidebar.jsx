@@ -30,19 +30,21 @@ export const Sidebar = () => {
   return (
     <>
       <div className={styles.sidebarcontainer}>
-        <Modal />
-        <Logo />
-        <NewBoardButton onNewBoard={handleNewBoard} />
-        {boards.map((board, index) => (
-          <Board
-            key={index}
-            name={board.name}
-            svg={board.svg}
-            onEdit={(newName, newSvg) => handleEdit(index, newName, newSvg)}
-            onDelete={() => handleDelete(index)}
-          />
-        ))}
-        <BoardsList />
+        <div style={{ flexGrow: 1 }}>
+          <Modal />
+          <Logo />
+          <NewBoardButton onNewBoard={handleNewBoard} />
+          {boards.map((board, index) => (
+            <Board
+              key={index}
+              name={board.name}
+              svg={board.svg}
+              onEdit={(newName, newSvg) => handleEdit(index, newName, newSvg)}
+              onDelete={() => handleDelete(index)}
+            />
+          ))}
+          <BoardsList />
+        </div>
         <div>
           <NeedHelp />
           <LogoutButton />

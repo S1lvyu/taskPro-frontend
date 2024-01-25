@@ -4,12 +4,18 @@ import svgSprite from "../../../assets/svg/symbol-defs.svg";
 
 //*ButtonLogout component*
 export default function LogoutButton() {
-  const handleLogout = () => {
-    // ! Add here our logout logic from backend
-  };
+  // const handleLogout = async () => {
+  //   const response = await fetch("/logout", { method: "GET" });
+  //   if (response.ok) {
+  //     console.log("Logged out");
+
+  //   } else {
+  //     console.error("Logout failed");
+  //   }
+  // };
 
   return (
-    <button className={styles.logoutbutton} onClick={handleLogout}>
+    <button className={styles.logoutbutton}>
       <svg width="32" height="32" fill="#BEDBB0">
         <use href={svgSprite + "#icon-logout"} />
       </svg>
