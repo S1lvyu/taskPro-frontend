@@ -1,6 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
+import styles from "../Sidebar/sidebar.module.css";
+import Modal from "../Sidebar/Modal/Modal";
+import Logo from "../Sidebar/Logo/Logo";
+import NewBoardButton from "./NewBoardButton/NewBoardButton";
+import Board from "../Sidebar/Board/Board";
+import BoardsList from "./BoardsList/BoardsList";
+import NeedHelp from "./NeedHelp/NeedHelp";
+import LogoutButton from "../Sidebar/LogoutButton/LogoutButton";
 
 //! Line 89-> We replace with our modalBoard model
+
+export const Sidebar = () => {
+  return (
+    <>
+      <div className={styles.sidebarcontainer}>
+        <Modal />
+        <Logo />
+        <NewBoardButton />
+        <Board />
+        <BoardsList />
+        <div>
+          <NeedHelp />
+          <LogoutButton />
+        </div>
+      </div>
+    </>
+  );
+};
 //*Logo component*
 // export const Logo = () => {
 //   return (
@@ -164,32 +190,18 @@ import React, { useState } from "react";
 //   );
 // };
 
-//*ButtonLogout component*
-export const LogoutButton = () => {
-  const handleLogout = () => {
-    // ! Add here our logout logic from backend
-  };
+// //*ButtonLogout component*
+//   export const LogoutButton = () => {
+//   const handleLogout = () => {
+//     // ! Add here our logout logic from backend
+//   };
 
-  return (
-    <button onClick={handleLogout}>
-      <svg width="20" height="20" fill="#BEDBB0">
-        <use href="../../assets/svg/symbol-defs.svg#icon-arrow-circle-broken-right" />
-      </svg>
-      Log out
-    </button>
-  );
-};
-
-export const Sidebar = () => {
-  return (
-    <>
-      {/* <div>
-				<Logo />
-				<BoardTitle />
-				<BoardsList />
-			</div>
-			<NeedHelp />
-			<ButtonLogout /> */}
-    </>
-  );
-};
+//   return (
+//     <button onClick={handleLogout}>
+//       <svg width="20" height="20" fill="#BEDBB0">
+//         <use href="../../assets/svg/symbol-defs.svg#icon-arrow-circle-broken-right" />
+//       </svg>
+//       Log out
+//     </button>
+//   );
+// };

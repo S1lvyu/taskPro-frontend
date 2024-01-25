@@ -4,7 +4,7 @@ import Board from "../Board/Board";
 import styles from "../BoardsList/boardslist.module.css";
 
 //*BoardsList component*
-export const BoardsList = () => {
+export default function BoardsList() {
   const [boards, setBoards] = useState([]);
 
   const handleNewBoard = (name) => {
@@ -37,4 +37,4 @@ export const BoardsList = () => {
       <NewBoardButton onNewBoard={handleNewBoard} />
     </div>
   );
-};
+}

@@ -1,7 +1,7 @@
-// import React from "react";
+import React from "react";
 
 // //* Modal component*
-export const Modal = ({ isOpen, onClose, children }) => {
+export default function Modal({ isOpen, onClose, children }) {
   if (!isOpen) {
     return null;
   }
@@ -11,4 +11,4 @@ export const Modal = ({ isOpen, onClose, children }) => {
       {children}
     </div>
   );
-};
+}

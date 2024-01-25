@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import styles from "../NeedHelp/needhelp.module.css";
-import plantImg from ".././../assets/img/plantImg/plant.png";
+import img from "../../../assets/img/plantImg/plant.png";
 
 // *NeedHelp component*
-export const NeedHelp = () => {
+export default function NeedHelp() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -17,7 +17,7 @@ export const NeedHelp = () => {
 
   return (
     <div>
-      <img src={plantImg} alt="HelpPlant" />
+      <img src={img} alt="HelpPlant" />
       <p>If you need help with TaskPro, check out our support resources or reach out to our customer support team.</p>
       <button onClick={handleOpen}>
         <svg width="20" height="20" fill="#FFFFFF">
@@ -34,4 +34,4 @@ export const NeedHelp = () => {
       </Modal>
     </div>
   );
-};
+}

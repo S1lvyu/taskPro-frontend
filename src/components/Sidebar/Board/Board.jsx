@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal";
 //! Line 43-> We replace with our modalBoard model
 
 //*Board component*
-export const Board = ({ name, svg, onEdit, onDelete }) => {
+export default function Board({ name, svg, onEdit, onDelete }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newSvg, setNewSvg] = useState(svg);
@@ -45,4 +45,4 @@ export const Board = ({ name, svg, onEdit, onDelete }) => {
       </Modal>
     </div>
   );
-};
+}
