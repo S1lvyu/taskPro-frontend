@@ -26,8 +26,11 @@
   width: 40px;
   height: 36px;
   flex-shrink: 0;
+  border: none;
 }
 
 .newboard {
   display: flex;
+  align-items: center;
+  padding-top: 10px;
 }

@@ -7,6 +7,7 @@
   top: 0;
   left: 0;
   background-color: var(--black12-color);
+  /* background-color: var(--pink-color); */
   display: flex;
   flex-direction: column;
   flex-shrink: 0;

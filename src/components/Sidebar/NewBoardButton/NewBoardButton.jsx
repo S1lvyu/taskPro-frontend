@@ -6,7 +6,7 @@ import svgSprite from "../../../assets/svg/symbol-defs.svg";
 //*NewBoard component with button*
 export default function NewBoardButton({ onNewBoard }) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [name, setName] = useState("");
+  const [name, setName] = useState("");
 
   const handleNewBoard = (name) => {
     onNewBoard(name);
@@ -30,10 +30,13 @@ export default function NewBoardButton({ onNewBoard }) {
           </svg>
         </button>
       </div>
-      <Modal isOpen={isOpen} onClose={handleNewBoard}>
-        {/*We Replace with our modalBoard model here 
-				<input type="text" value={name} onChange={e => setName(e.target.value)} /> */}
-        <button onClick={() => handleNewBoard("New Board")}>Create</button>
+      <svg width="212" height="2" fill="rgba(255, 255, 255, 0.1)">
+        <use href={svgSprite + "#icon-grey-line"} />
+      </svg>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        We Replace with our modalBoard model here
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <button onClick={() => handleNewBoard(name)}>Create</button>
       </Modal>
     </>
   );
