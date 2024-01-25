@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../LogoutButton/logoutbutton.module.css";
+import svgSprite from "../../../assets/svg/symbol-defs.svg";
 
 //*ButtonLogout component*
 export default function LogoutButton() {
@@ -8,9 +9,9 @@ export default function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout}>
-      <svg width="20" height="20" fill="#BEDBB0">
-        <use href="../../assets/svg/symbol-defs.svg#icon-arrow-circle-broken-right" />
+    <button className={styles.logoutbutton} onClick={handleLogout}>
+      <svg width="32" height="32" fill="#BEDBB0">
+        <use href={svgSprite + "#icon-logout"} />
       </svg>
       Log out
     </button>
