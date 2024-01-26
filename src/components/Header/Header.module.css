@@ -1,0 +1,66 @@
+:root {
+  --primary-color: #ffffff;
+  --dark-color: #000000;
+  --violet-color: #d6d8ff;
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+  background-color: var(--primary-color);
+}
+
+.button_toggle {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+}
+
+.profile {
+  display: flex;
+}
+
+.modal {
+  background-color: transparent;
+  border: 0;
+  color: white;
+}
+
+.light {
+  background-color: var(--primary-color);
+}
+
+.dark {
+  background-color: var(--dark-color);
+}
+
+.violet {
+  background-color: var(--violet-color);
+}
+
+.svg {
+  fill: currentColor;
+}
+
+@media (max-width: 760px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .buttons_container {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 1920px) and (min-width: 760px) {
+  .modal_mobile {
+    display: none;
+  }
+
+  .buttons_container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 22px;
+  }
+}
