@@ -1,0 +1,36 @@
+@import '../../../index.css';
+
+.title {
+  color: rgba(255, 255, 255, 0.50);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  padding-top: 60px;
+  padding-bottom: 5px;
+}
+
+
+.content {
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  padding-right: 98px;
+}
+
+.addbutton {
+  border-radius: 6px;
+  background: var(--light-green-color);
+  width: 40px;
+  height: 36px;
+  flex-shrink: 0;
+  border: none;
+}
+
+.newboard {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}

@@ -1,0 +1,18 @@
+@import '../../../index.css';
+
+.logoutbutton {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding-top: 30px;
+}
+
+.logoutbutton svg {
+  vertical-align: middle;
+  margin-right: 14px;
+}
