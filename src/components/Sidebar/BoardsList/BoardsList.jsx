@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import NewBoardButton from "../NewBoardButton/NewBoardButton";
 import Board from "../Board/Board";
-import styles from "../BoardsList/boardslist.module.css";
+// import styles from "../BoardsList/boardslist.module.css";
 
 //*BoardsList component*
 export default function BoardsList() {
-  console.log("Rendering BoardsList");
   const [boards, setBoards] = useState([]);
 
-  const handleNewBoard = (name) => {
-    setBoards([...boards, { name, svg: "" }]);
-  };
+  // const handleNewBoard = (name) => {
+  //   setBoards([...boards, { name, svg: "" }]);
+  // };
 
   const handleEditBoard = (index, newName, newSvg) => {
     const newBoards = [...boards];

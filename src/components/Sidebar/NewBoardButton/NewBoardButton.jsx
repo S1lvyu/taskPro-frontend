@@ -5,7 +5,6 @@ import svgSprite from "../../../assets/svg/symbol-defs.svg";
 
 //*NewBoard component with button*
 export default function NewBoardButton({ onNewBoard }) {
-  console.log("Rendering NewBoardButton");
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
 
