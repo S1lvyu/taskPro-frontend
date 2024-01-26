@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
-//import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute";
 import { SharedLayoutStart } from "./components/SharedLayoutStart/SharedLayoutStart";
 import { Home } from "./pages/Home/Home";
