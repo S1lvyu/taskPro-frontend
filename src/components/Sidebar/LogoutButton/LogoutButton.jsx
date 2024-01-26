@@ -13,11 +13,7 @@ export default function LogoutButton() {
   const handleLogout = (event) => {
     event.preventDefault();
     try {
-      dispatch(
-        logoutUser(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbHZpYW4ucmFuZXRlc2N1QGdtYWlsLmNvbSIsImlhdCI6MTcwNjI5OTM4MiwiZXhwIjoxNzA2MzAyOTgyfQ.pTgaOG3vyqhDvLrFHCOZfF8lOvEFIxQcFYCF_mjILD0"
-        )
-      );
+      dispatch(logoutUser(token));
       <Navigate to="/" />;
     } catch (error) {
       console.log(error);
