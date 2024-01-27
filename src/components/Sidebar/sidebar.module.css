@@ -1,0 +1,15 @@
+@import '../../index.css';
+
+.sidebarcontainer {
+  padding: 24px;
+  height: 100vh;
+  width: 260px;
+  top: 0;
+  left: 0;
+  background-color: var(--black12-color);
+  /* background-color: var(--pink-color); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}

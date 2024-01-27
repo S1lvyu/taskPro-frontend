@@ -1,0 +1,48 @@
+@import '../../../index.css';
+
+.helpcontainer {
+  background: var(--black1F-color);
+  padding: 20px;
+  width: 212px;
+  height: 272px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.imageplant {
+  width: 54px;
+  height: 78px;
+  flex-shrink: 0;
+}
+
+.helptext {
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+
+.helpbutton {
+  color: var(--white-color);
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 18px;
+}
+
+.helpbutton svg {
+  margin-right: 8px;
+  vertical-align: middle;
+
+}
+
+.highlight {
+  color: var(--light-green-color);
+}
