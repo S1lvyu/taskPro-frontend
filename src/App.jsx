@@ -23,7 +23,7 @@ export const App = () => {
 			<Routes>
 				<Route path="/" element={<SharedLayoutStart />}>
 					<Route index element={<StartPage />} />
-					<Route
+					{/* <Route
 						path="/auth"
 						element={
 							<PublicRoute>
@@ -33,7 +33,7 @@ export const App = () => {
 					>
 						<Route path="register" element={<RegistrationForm />} />
 						<Route path="login" element={<LoginForm />} />
-					</Route>
+					</Route> */}
 				</Route>
 
 				<Route
