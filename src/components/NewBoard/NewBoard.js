@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import sprite from '../../assets/svg/symbol-defs.svg';
-import data from '../../assets/img/backgroundlmg/radiobutton';
-import { addBoard } from 'redux/operations';
+import data from '../../assets/img/backgroundlmg/radiobutton/data';
+import { addBoard } from '../../redux/operations';
 import {ButtonPrimary} from '../ButtonPrimary/ButtonPrimary';
+import { TitleSchema } from '../../utils/validation/TitleSchema';
 
 import {
   NewBoardTitle,
@@ -20,7 +21,7 @@ import {
   ErrorMessage,
 } from './NewBoard.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { TitleSchema } from 'schemas';
+
 
 const NewBoardForm = ({ onClose }) => {
   const {
