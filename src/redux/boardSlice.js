@@ -67,23 +67,24 @@ const BoardSlice = createSlice({
       .addCase(addColumn.pending, handlePending)
       .addCase(addColumn.rejected, handleRejected)
       .addCase(addColumn.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(updateColumn.pending, handlePending)
       .addCase(updateColumn.rejected, handleRejected)
       .addCase(updateColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(removeColumn.pending, handlePending)
       .addCase(removeColumn.rejected, handleRejected)
       .addCase(removeColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(addCard.pending, handlePending)
       .addCase(addCard.rejected, handleRejected)
@@ -91,7 +92,7 @@ const BoardSlice = createSlice({
         console.log(action.payload.data);
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
         console.log(state.boards);
       })
       .addCase(updateCard.pending, handlePending)

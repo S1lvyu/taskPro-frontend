@@ -13,3 +13,5 @@ export const getBoardsData = (state) => state.boards.boards;
 export const getBackgroundImagesData = (state) => state.boards.backgroundImages;
 export const getBoardIsLoading = (state) => state.boards.isLoading;
 export const getBoardError = (state) => state.boards.error;
+
+export const selectModal = (state) => state.modal.isOpen;

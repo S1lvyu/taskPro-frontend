@@ -1,39 +1,39 @@
- @import '@csstools/normalize.css';
+@import "@csstools/normalize.css";
 
- /* used for exemple like -> background-color: var(--white-color); */
- :root {
-   --white-color: #FFFFFF;
-   --black12-color: #121212;
-   --black15-color: #151515;
-   --black16-color: #161616;
-   --black1F-color: #1F1F1F;
-   --blackpure-color: #000000;
-   --light-green-color: #BEDBB0;
-   --dark-green-color: #9DC888;
-   --lightest-purple-color: #D6D8FF;
-   --light-purple-color: #B8BCFD;
-   --lightmedium-purple-color: #8FA1D0;
-   --medium-purple-color: #7B7EDE;
-   --dark-purple-color: #5255BC;
-   --pink-color: #E09CB5;
- }
+/* used for exemple like -> background-color: var(--white-color); */
+:root {
+  --white-color: #ffffff;
+  --black12-color: #121212;
+  --black15-color: #151515;
+  --black16-color: #161616;
+  --black1F-color: #1f1f1f;
+  --blackpure-color: #000000;
+  --light-green-color: #bedbb0;
+  --dark-green-color: #9dc888;
+  --lightest-purple-color: #d6d8ff;
+  --light-purple-color: #b8bcfd;
+  --lightmedium-purple-color: #8fa1d0;
+  --medium-purple-color: #7b7ede;
+  --dark-purple-color: #5255bc;
+  --pink-color: #e09cb5;
+}
 
- * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
- }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- html {
-   font-size: 14px;
-   width: 100vw;
- }
+html {
+  font-size: 14px;
+  width: 100vw;
+}
 
- body {
-   font-family: 'poppins', sans-serif;
-   font-style: normal;
-   font-weight: 400;
- }
+body {
+  font-family: "poppins", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
 
 h1,
 h2,
@@ -61,4 +61,7 @@ img {
 
 a {
   text-decoration: none;
+}
+#root {
+  display: flex;
 }
