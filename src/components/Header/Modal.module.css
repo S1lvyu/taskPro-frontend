@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #ffffff;
+  --dark-color: #161616;
+  --violet-color: #d6d8ff;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -13,9 +19,7 @@
 .modal {
   box-sizing: border-box;
   position: fixed;
-  left: 90%;
-  transform: translateX(-50%);
-  max-width: 300px;
+  max-width: 400px;
   background: #fcfcfc;
   border: 1px solid #ecedfd;
   box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
@@ -28,10 +32,8 @@
   margin-bottom: 16px;
   z-index: 100;
   transition: transform 0.3s ease;
-}
-
-.overlay.active .modal {
-  transform: translateY(0) translateX(-50%);
+  top: 50px;
+  right: 105px;
 }
 
 .light,
@@ -59,15 +61,15 @@
 }
 
 .light {
-  color: #161616;
+  color: var(--dark-color);
 }
 
 .dark {
-  color: #5255bc;
+  color: var(--dark-color);
 }
 
 .violet {
-  color: #161616;
+  color: var(--dark-color);
 }
 
 button {
@@ -75,4 +77,10 @@ button {
   border: none;
   cursor: pointer;
   padding: 8px;
+}
+
+@media (max-width: 760px) {
+  .modal {
+    right: 100px;
+  }
 }

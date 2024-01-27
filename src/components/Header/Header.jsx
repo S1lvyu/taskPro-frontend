@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import styles from "./Header.module.css";
-import svgSprite from "../../assets/svg/symbol-defs.svg";
 
 const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("#ffffff");
+  const svgColorClass =
+    currentColor === "dark" ? styles.whiteColor : styles.blackColor;
 
   const openModal = () => {
     setModalOpen(true);
@@ -26,25 +27,44 @@ const Header = () => {
         {/* mobile button modal */}
         <div className={styles.modal_mobile}>
           <button className={styles.button_toggle} onClick={openModal}>
-            <svg width="24" height="24" className={styles.svg}>
-              <use href={svgSprite + "#icon-menu"} />
+            <svg
+              className={`${svgColorClass}`}
+              width="32"
+              height="32"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
             </svg>
           </button>
         </div>
 
         {/* user menu */}
 
-        <div className={styles.profile}>
-          {!isModalOpen && (
-            <button className={styles.modalTrigger} onClick={openModal}>
-              Theme
-            </button>
-          )}
-
+        <div className={styles.theme}>
+          <button
+            className={`${styles.modalTrigger} ${styles[currentColor]}`}
+            onClick={openModal}
+          >
+            Theme
+          </button>
           {isModalOpen && (
-            <Modal onClose={closeModal} onColorChange={handleColorChange} />
+            <Modal
+              onClose={closeModal}
+              onColorChange={handleColorChange}
+              themeColor={currentColor}
+            />
           )}
-          <div className={styles.profileData}></div>
+          <div className={`${styles.profileData} ${styles[currentColor]}`}>
+            <div className={styles.userName}>Ivetta</div>
+            <div className={styles.userAvatar}>
+              <img src="profileImageUrl" alt="Profile" />
+            </div>
+          </div>
         </div>
       </div>
     </header>
