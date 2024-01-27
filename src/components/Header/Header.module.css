@@ -1,0 +1,108 @@
+:root {
+  --primary-color: #ffffff;
+  --dark-color: #161616;
+  --violet-color: #d6d8ff;
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.whiteColor {
+  fill: white;
+}
+
+.blackColor {
+  fill: black;
+}
+
+.button_toggle {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+}
+
+.theme {
+  display: flex;
+  align-items: center;
+}
+
+.modalTrigger {
+  padding: 10px;
+  margin-right: 8px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  border: none;
+  cursor: pointer;
+}
+
+.profileData {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.userName {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  margin-right: 8px;
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--avatar-background, #333333);
+}
+
+.userAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.light {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+}
+
+.dark {
+  background-color: var(--dark-color);
+  color: var(--primary-color);
+}
+
+.violet {
+  background-color: var(--violet-color);
+  color: var(--dark-color);
+}
+
+@media (max-width: 760px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .buttons_container {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 1920px) and (min-width: 760px) {
+  .modal_mobile {
+    display: none;
+  }
+
+  .buttons_container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 13px;
+  }
+}
