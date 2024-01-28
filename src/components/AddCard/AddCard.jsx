@@ -9,7 +9,7 @@ import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
 import { addCard, updateCard } from "../../redux/operations";
 import { getUserToken } from "../../redux/selectors";
 
-export default function AddCard({ title, textButton }) {
+export default function AddCard({ title, textButton, cardId }) {
   const initialInput = {
     title: "",
     description: "",
@@ -51,6 +51,7 @@ export default function AddCard({ title, textButton }) {
           deadline: selectedDate,
         })
       );
+      handleCloseModal();
     } catch (error) {
       console.error(error);
     }
@@ -58,17 +59,19 @@ export default function AddCard({ title, textButton }) {
 
   const handleEditSubmit = (event) => {
     event.preventDefault();
+    console.log(userInput);
     try {
       dispatch(
         updateCard({
           token,
-          // cardId,
+          cardId,
           title: userInput.title,
           description: userInput.description,
           labelColor: userInput.labelColor,
           deadline: selectedDate,
         })
       );
+      handleCloseModal();
     } catch (error) {
       console.error(error);
     }
