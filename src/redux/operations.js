@@ -163,7 +163,9 @@ export const removeBoard = createAsyncThunk(
 
 export const addColumn = createAsyncThunk(
   "boards/addColumn",
-  async (token, boardId, columnName, thunkAPI) => {
+  async ({ token, boardId, columnName }, thunkAPI) => {
+    console.log(boardId);
+    console.log(columnName);
     try {
       const response = await addColumnApi(token, boardId, columnName);
       return response.data;
@@ -175,7 +177,7 @@ export const addColumn = createAsyncThunk(
 
 export const updateColumn = createAsyncThunk(
   "boards/updateColumn",
-  async (token, columnId, columnName, thunkAPI) => {
+  async ({ token, columnId, columnName }, thunkAPI) => {
     try {
       const response = await editColumnApi(token, columnId, columnName);
       return response.data;
@@ -186,7 +188,7 @@ export const updateColumn = createAsyncThunk(
 );
 export const removeColumn = createAsyncThunk(
   "boards/removeColumn",
-  async (token, columnId, thunkAPI) => {
+  async ({ token, columnId }, thunkAPI) => {
     try {
       const response = await deleteColumnApi(token, columnId);
       return response.data;
@@ -198,12 +200,7 @@ export const removeColumn = createAsyncThunk(
 export const addCard = createAsyncThunk(
   "boards/addCard",
   async (
-    token,
-    columnId,
-    title,
-    description,
-    labelColor,
-    deadline,
+    { token, columnId, title, description, labelColor, deadline },
     thunkAPI
   ) => {
     try {
@@ -224,7 +221,10 @@ export const addCard = createAsyncThunk(
 
 export const updateCard = createAsyncThunk(
   "boards/updateCard",
-  async (token, cardId, title, description, labelColor, deadline, thunkAPI) => {
+  async (
+    { token, cardId, title, description, labelColor, deadline },
+    thunkAPI
+  ) => {
     try {
       const response = await editCardApi(
         token,
@@ -243,7 +243,7 @@ export const updateCard = createAsyncThunk(
 
 export const removeCard = createAsyncThunk(
   "boards/removeCard",
-  async (token, cardId, thunkAPI) => {
+  async ({ token, cardId }, thunkAPI) => {
     try {
       const response = await deleteCardApi(token, cardId);
       return response.data;
@@ -255,7 +255,7 @@ export const removeCard = createAsyncThunk(
 
 export const moveCard = createAsyncThunk(
   "boards/moveCard",
-  async (token, cardId, columnId, thunkAPI) => {
+  async ({ token, cardId, columnId }, thunkAPI) => {
     try {
       const response = await moveCardApi(token, cardId, columnId);
       return response.data;
