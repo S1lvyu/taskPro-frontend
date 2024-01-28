@@ -27,11 +27,22 @@ export const Home = () => {
   }, [boards, hasRedirected, navigate]);
   return (
     <>
-      <Header />
-      <Sidebar />
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      <div style={{ display: "flex", width: "100%", height: "100vh" }}>
+        <Sidebar />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Header />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </div>
+      </div>
     </>
   );
 };

@@ -3,7 +3,9 @@
   --dark-color: #161616;
   --violet-color: #d6d8ff;
 }
-
+.header {
+  width: 100%;
+}
 .buttons_container {
   display: flex;
   justify-content: space-between;

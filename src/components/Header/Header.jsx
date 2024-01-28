@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header className={styles.header}>
       <div className={`${styles.buttons_container} ${styles[currentColor]}`}>
         {/* mobile button modal */}
         <div className={styles.modal_mobile}>
