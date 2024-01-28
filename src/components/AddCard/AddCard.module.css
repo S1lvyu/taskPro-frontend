@@ -1,0 +1,148 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(100, 100, 100, 0.5);
+  position: absolute;
+  top: 0;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 522px;
+  width: 350px;
+  border-radius: 8px;
+  border: 1px solid rgba(190, 219, 176, 0.5);
+  position: relative;
+  background: #151515;
+}
+.title {
+  color: #fff;
+  margin-top: 24px;
+  margin-left: 24px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+.svg {
+  fill: white;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+}
+.form {
+  width: 302px;
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.input {
+  width: 302px;
+  height: 49px;
+  padding-left: 18px;
+  background-color: transparent;
+
+  color: #fff;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  border-radius: 8px;
+  border: 1px solid #bedbb0;
+
+  opacity: 0.4;
+  background: #1f1f1f;
+
+  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+}
+.input__modifier {
+  height: 150px;
+  resize: none;
+  padding-top: 10px;
+}
+.text {
+  color: rgba(255, 255, 255, 0.5);
+
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+}
+.radioInput {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  border: 2px solid rgba(143, 161, 208, 1);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.radioInput::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(143, 161, 208, 1);
+  opacity: 0;
+}
+
+.radioInput:checked::before {
+  opacity: 1;
+}
+.radioInput__modifier__pink {
+  border: 2px solid #e09cb5;
+}
+.radioInput__modifier__pink::before {
+  background-color: #e09cb5;
+}
+.radioInput__modifier__green {
+  border: 2px solid #bedbb0;
+}
+.radioInput__modifier__green::before {
+  background-color: #bedbb0;
+}
+.radioInput__modifier__gray {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.radioInput__modifier__gray::before {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.calendar {
+  background-color: transparent;
+  border: none;
+  color: #bedbb0;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+.calendar::-webkit-inner-spin-button,
+.calendar::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.calendar:focus {
+  outline: none;
+}

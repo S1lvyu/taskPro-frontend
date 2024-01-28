@@ -1,33 +1,31 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-// import { Background } from '../../components/...';
-// import { HeaderDashboard } from '../../components/...';
-// import { MainDashboard } from "../../components/...";
-import { getBoardsData } from "../../redux/selectors";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import Dashboard from "../../components/Dashboard/Dashboard";
+import AddColumn from "../../components/AddColumn/AddColumn";
+
+import { getBoardsData, selectModal } from "../../redux/selectors";
 
 const ScreensPage = () => {
+  const modal = useSelector(selectModal);
   const navigate = useNavigate();
   const { boardId } = useParams();
   const boards = useSelector(getBoardsData);
-  const board = boards.find(item => item.id === boardId);
-
+  const board = boards.find((item) => item._id === boardId);
 
   useEffect(() => {
     if (!board) {
-      navigate('/home');
+      navigate("/home");
     }
-  });
+  }, [board, navigate]);
 
   return (
     <>
-    <h1>Dashoard goes here: TO DO</h1>
-      {/* {board && (
-        <Background>
-          <HeaderDashboard />
-          <MainDashboard />
-        </Background>
-      )} */}
+      {board && (
+        <Dashboard board={board}>
+          {modal && <AddColumn title="Add Column" textButton="Add" />}
+        </Dashboard>
+      )}
     </>
   );
 };

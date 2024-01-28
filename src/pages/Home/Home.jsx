@@ -1,12 +1,12 @@
 import { Suspense, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Loader } from "../../components/Loader/Loader";
-import { Header } from "../../components/Header/Header";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
+import { Loader } from "../../components/Loader/Loader";
 import { getBoards } from "../../redux/operations";
 import { getBoardsData } from "../../redux/selectors";
 import { getUserToken } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -25,14 +25,24 @@ export const Home = () => {
       setHasRedirected(true);
     }
   }, [boards, hasRedirected, navigate]);
-
   return (
     <>
-      <Header />
-      <Sidebar />
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      <div style={{ display: "flex", width: "100%", height: "100vh" }}>
+        <Sidebar />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Header />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </div>
+      </div>
     </>
   );
 };
