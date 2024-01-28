@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import Board from "../Board/Board";
-// import styles from "../BoardsList/boardslist.module.css";
+import styles from "../BoardsList/boardslist.module.css";
 
 //*BoardsList component*
 export default function BoardsList() {
   const [boards, setBoards] = useState([]);
-
-  // const handleNewBoard = (name) => {
-  //   setBoards([...boards, { name, svg: "" }]);
-  // };
 
   const handleEditBoard = (index, newName, newSvg) => {
     const newBoards = [...boards];

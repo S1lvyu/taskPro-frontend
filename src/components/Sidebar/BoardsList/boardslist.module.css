@@ -1,0 +1,6 @@
+@import '../../../index.css';
+
+.boardscontainer {
+  height: 300px;
+  overflow: hidden;
+}

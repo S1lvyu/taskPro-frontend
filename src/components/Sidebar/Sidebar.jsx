@@ -43,7 +43,7 @@ export const Sidebar = () => {
               onDelete={() => handleDelete(index)}
             />
           ))}
-          <BoardsList />
+          <BoardsList className="boardslistcontainer" />
         </div>
         <div>
           <NeedHelp />
