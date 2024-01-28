@@ -39,28 +39,17 @@ export default function AddColumn({ title, textButton }) {
       console.error(error);
     }
   };
-  const handleFormSubmit =
-    title === "Add Column" ? handleSubmit : handleEditSubmit;
+  const handleFormSubmit = title === "Add Column" ? handleSubmit : handleEditSubmit;
   return (
     <div className={styles.overlay}>
       <div className={styles.container}>
         <h1 className={styles.title}>{title}</h1>
 
-        <svg
-          width={18}
-          height={18}
-          className={styles.svg}
-          onClick={handleCloseModal}
-        >
+        <svg width={18} height={18} className={styles.svg} onClick={handleCloseModal}>
           <use href={svgSprite + "#icon-cancel-close"} />
         </svg>
         <form onSubmit={handleFormSubmit} className={styles.form}>
-          <input
-            className={styles.input}
-            placeholder="Title"
-            value={columnName}
-            onChange={handleInputChange}
-          />
+          <input className={styles.input} placeholder="Title" value={columnName} onChange={handleInputChange} />
           <ButtonPrimary style={{ width: "302px" }}>{textButton}</ButtonPrimary>
         </form>
       </div>

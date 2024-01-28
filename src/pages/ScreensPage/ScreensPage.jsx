@@ -20,13 +20,7 @@ const ScreensPage = () => {
   }, [board, navigate]);
 
   return (
-    <>
-      {board && (
-        <Dashboard board={board}>
-          {modal && <AddColumn title="Add Column" textButton="Add" />}
-        </Dashboard>
-      )}
-    </>
+    <>{board && <Dashboard board={board}>{modal && <AddColumn title="Add Column" textButton="Add" />}</Dashboard>}</>
   );
 };
 
