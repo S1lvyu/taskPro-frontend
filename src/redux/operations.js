@@ -122,7 +122,7 @@ export const getBoards = createAsyncThunk(
 );
 export const addBoard = createAsyncThunk(
   "boards/addBoard",
-  async (token, boardName, icon, background, thunkAPI) => {
+  async ({ token, boardName, icon, background }, thunkAPI) => {
     try {
       const response = await addBoardApi(token, boardName, icon, background);
       return response.data;
