@@ -2,14 +2,17 @@ import React from "react";
 import styles from "./Dashboard.module.css";
 import svgSprite from "../../assets/svg/symbol-defs.svg";
 import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import AddColumn from "../AddColumn/AddColumn";
 import { openModal } from "../../redux/modalSlice";
-
+import { getModalType, selectModal } from "../../redux/selectors";
+import NewBoard from "../NewBoard/NewBoard";
 export default function Dashboard({ children, board }) {
+  const modal = useSelector(selectModal);
+  const modalType = useSelector(getModalType);
   const dispatch = useDispatch();
   const handleOpenModal = () => {
-    dispatch(openModal());
+    dispatch(openModal({ data: "column" }));
   };
   return (
     <div
@@ -41,6 +44,12 @@ export default function Dashboard({ children, board }) {
       >
         Add another column
       </ButtonPrimary>
+      {modal && modalType === "column" && (
+        <AddColumn title="Add Column" textButton="Add" />
+      )}
+      {modal && modalType === "board" && (
+        <NewBoard componentTitle="Add Board" textButton="Add" />
+      )}
     </div>
   );
 }

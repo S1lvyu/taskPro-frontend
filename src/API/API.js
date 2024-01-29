@@ -163,6 +163,7 @@ export const deleteCardApi = (token, cardId) =>
 export const moveCardApi = (token, cardId, columnId) =>
   BASE_API.patch(
     `/homepage/boards/moveCard/${cardId}/${columnId}`,
+    {},
 
     {
       headers: {

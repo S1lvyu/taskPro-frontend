@@ -15,3 +15,4 @@ export const getBoardIsLoading = (state) => state.boards.isLoading;
 export const getBoardError = (state) => state.boards.error;
 
 export const selectModal = (state) => state.modal.isOpen;
+export const getModalType = (state) => state.modal.data;
