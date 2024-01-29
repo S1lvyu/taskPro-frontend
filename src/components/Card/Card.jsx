@@ -3,37 +3,27 @@ import MoveCardPopUp from "../moveCardPopUp/MoveCardPopUp";
 import { useSelector, useDispatch } from "react-redux";
 import svgSprite from "../../assets/svg/symbol-defs.svg";
 import styles from "./Card.module.css";
-import {
-  selectModal,
-  getBoardsData,
-  getModalType,
-  getUserToken,
-} from "../../redux/selectors";
+import { selectModal, getModalType, getUserToken } from "../../redux/selectors";
 import { removeCard } from "../../redux/operations";
 import { openModal } from "../../redux/modalSlice";
 import AddCard from "../AddCard/AddCard";
-export default function Card() {
+export default function Card({ card, cardOwner, columns }) {
   const dispatch = useDispatch();
   const token = useSelector(getUserToken);
   const modal = useSelector(selectModal);
   const modalType = useSelector(getModalType);
-  const boards = useSelector(getBoardsData);
-  // de modificat urmatoarele linii de cod cu o varianta care contine toate datele
-  const cardData = boards[0]?.columns[1]?.cards[5];
-  const columns = boards[0]?.columns;
-  const formatedData = new Date(cardData?.deadline).toLocaleDateString();
+
+  const formatedData = new Date(card?.deadline).toLocaleDateString();
   const text =
-    cardData?.labelColor === "#8FA1D0"
+    Card?.labelColor === "#8FA1D0"
       ? "Low"
-      : cardData?.labelColor === "#E09CB5"
+      : card?.labelColor === "#E09CB5"
       ? "Medium"
-      : cardData?.labelColor === "#BEDBB0"
+      : card?.labelColor === "#BEDBB0"
       ? "High"
       : "Without";
-  const cardId = boards[0]?.columns[1]?.cards[5]?._id;
-  console.log(cardId);
-  const handleOpenEditModal = (event) => {
-    console.log(event.target);
+
+  const handleOpenEditModal = () => {
     try {
       dispatch(openModal({ data: "card" }));
     } catch (error) {
@@ -49,7 +39,7 @@ export default function Card() {
   };
   const handleDeleteCard = () => {
     try {
-      dispatch(removeCard({ token, cardId: cardData._id }));
+      dispatch(removeCard({ token, cardId: card._id }));
     } catch (error) {}
   };
 
@@ -57,11 +47,11 @@ export default function Card() {
     <div className={styles.card}>
       <div
         className={styles.card__color}
-        style={{ background: `${cardData?.labelColor}` }}
+        style={{ background: `${card?.labelColor}` }}
       ></div>
       <div>
-        <h1 className={styles.title}>{cardData?.title}</h1>
-        <p className={styles.text}>{cardData?.description}</p>
+        <h1 className={styles.title}>{card?.title}</h1>
+        <p className={styles.text}>{card?.description}</p>
         <div className={styles.line}></div>
         <div className={styles.card__info}>
           <div className={styles.data}>
@@ -69,7 +59,7 @@ export default function Card() {
             <div className={styles.deadline}>
               <div
                 className={styles.circle}
-                style={{ background: `${cardData?.labelColor}` }}
+                style={{ background: `${card?.labelColor}` }}
               ></div>
               {text}
             </div>
@@ -111,15 +101,15 @@ export default function Card() {
           title="Edit Card"
           textButton="Edit"
           // de modificat cu o valore reala
-          cardId="65b5480c0add5dc60f21fdcf"
+          cardId={card._id}
         />
       )}
       {modal && modalType === "popup" && (
         <MoveCardPopUp
           // de modificat  cu o valoare reala
-          cardOwner="65b4c957c5e64e41f3c4b707"
+          cardOwner={cardOwner}
           columns={columns}
-          cardId={cardId}
+          cardId={card._id}
         />
       )}
     </div>

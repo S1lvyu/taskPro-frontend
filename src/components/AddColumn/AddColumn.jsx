@@ -27,6 +27,7 @@ export default function AddColumn({ title, textButton }) {
 
     try {
       dispatch(addColumn({ token, boardId: id.boardId, columnName }));
+      handleCloseModal();
     } catch (error) {
       console.error(error);
     }

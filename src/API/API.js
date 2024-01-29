@@ -107,7 +107,7 @@ export const editColumnApi = (token, columnId, columnName) =>
   );
 export const deleteColumnApi = (token, columnId) =>
   BASE_API.delete(
-    `/homepage/boards/$deleteColumn/${columnId}`,
+    `/homepage/boards/deleteColumn/${columnId}`,
 
     {
       headers: {
