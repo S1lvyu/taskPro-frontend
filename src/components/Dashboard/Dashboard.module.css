@@ -53,3 +53,9 @@
   cursor: pointer;
   transform: scale(1.2);
 }
+.columns__container {
+  display: flex;
+  gap: 18px;
+  width: 100vw;
+  overflow-y: scroll;
+}
