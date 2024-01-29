@@ -1,27 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from ".././NewBoardButton/newboardbutton.module.css";
-import Modal from "../Modal/Modal";
+import { getModalType } from "../../../redux/selectors";
 import svgSprite from "../../../assets/svg/symbol-defs.svg";
 
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../redux/modalSlice";
+import { useSelector } from "react-redux";
 
 //*NewBoard component with button*
-export default function NewBoardButton({ onNewBoard }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState("");
+export default function NewBoardButton() {
   const dispatch = useDispatch();
-
+  const modal = useSelector(getModalType);
   const handleOpenModal = () => {
     try {
       dispatch(openModal({ data: "board" }));
+      console.log(modal);
     } catch (error) {
       console.error(error);
     }
-  };
-  const handleNewBoard = (name) => {
-    onNewBoard(name);
-    setIsOpen(false);
   };
 
   return (
@@ -35,8 +31,13 @@ export default function NewBoardButton({ onNewBoard }) {
           Create a <br />
           new board
         </p>
-        <button className={styles.addbutton} onClick={handleOpenModal}>
-          <svg width="20" height="20" fill="#121212">
+        <button className={styles.addbutton}>
+          <svg
+            width="20"
+            height="20"
+            stroke="#121212"
+            onClick={handleOpenModal}
+          >
             <use href={svgSprite + "#icon-plus"} />
           </svg>
         </button>
@@ -44,15 +45,6 @@ export default function NewBoardButton({ onNewBoard }) {
       <svg width="212" height="2" fill="rgba(255, 255, 255, 0.1)">
         <use href={svgSprite + "#icon-grey-line"} />
       </svg>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        We Replace with our modalBoard model here
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button onClick={() => handleNewBoard(name)}>Create</button>
-      </Modal>
     </>
   );
 }

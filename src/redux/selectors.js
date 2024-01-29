@@ -16,3 +16,4 @@ export const getBoardError = (state) => state.boards.error;
 
 export const selectModal = (state) => state.modal.isOpen;
 export const getModalType = (state) => state.modal.data;
+export const getModalID = (state) => state.modal.id;

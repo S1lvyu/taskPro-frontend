@@ -27,7 +27,7 @@ export default function MoveCardPopUp({ cardOwner, columns, cardId }) {
   return (
     <div className={styles.overlay}>
       <ul className={styles.container}>
-        {columns.map(
+        {columns?.map(
           (item) =>
             cardOwner !== item._id && (
               <li

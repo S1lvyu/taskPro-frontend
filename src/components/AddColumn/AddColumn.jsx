@@ -9,7 +9,7 @@ import { addColumn, updateColumn } from "../../redux/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-export default function AddColumn({ title, textButton }) {
+export default function AddColumn({ title, textButton, columnId }) {
   const dispatch = useDispatch();
   const [columnName, setColumnName] = useState("");
   const token = useSelector(getUserToken);
@@ -34,8 +34,9 @@ export default function AddColumn({ title, textButton }) {
   };
   const handleEditSubmit = (event) => {
     event.preventDefault();
+    console.log(id);
     try {
-      dispatch(updateColumn({ token, columnId: id.columnId, columnName }));
+      dispatch(updateColumn({ token, columnId: columnId, columnName }));
     } catch (error) {
       console.error(error);
     }

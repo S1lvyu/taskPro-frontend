@@ -13,14 +13,14 @@ export default function Column({ columns, cards }) {
   const dispatch = useDispatch();
   const handleOpenAddCardModal = () => {
     try {
-      dispatch(openModal({ data: "addCard" }));
+      dispatch(openModal({ data: "addCard", id: columns._id }));
     } catch (error) {
       console.error(error);
     }
   };
   const handleOpenEditColumnModal = () => {
     try {
-      dispatch(openModal({ data: "editColumn" }));
+      dispatch(openModal({ data: "editColumn", id: columns._id }));
     } catch (error) {
       console.error(error);
     }
@@ -59,7 +59,7 @@ export default function Column({ columns, cards }) {
             <Card
               key={item._id}
               card={item}
-              cardOwner={item.owner}
+              cardOwner={item._id}
               columns={columns}
             />
           );

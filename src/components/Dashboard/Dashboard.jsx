@@ -5,17 +5,19 @@ import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
 import { useDispatch, useSelector } from "react-redux";
 import AddColumn from "../AddColumn/AddColumn";
 import { openModal } from "../../redux/modalSlice";
-import { getModalType, selectModal } from "../../redux/selectors";
+import { getModalType, selectModal, getModalID } from "../../redux/selectors";
 import NewBoard from "../NewBoard/NewBoard";
 import Column from "../Column/Column";
 import AddCard from "../AddCard/AddCard";
 
-export default function Dashboard({ children, board }) {
+export default function Dashboard({ board }) {
+  const modalId = useSelector(getModalID);
   const modal = useSelector(selectModal);
   const modalType = useSelector(getModalType);
   const dispatch = useDispatch();
   const handleOpenModal = () => {
     dispatch(openModal({ data: "column" }));
+    console.log(modalId);
   };
   return (
     <div
@@ -56,13 +58,17 @@ export default function Dashboard({ children, board }) {
         <AddColumn title="Add Column" textButton="Add" />
       )}
       {modal && modalType === "editColumn" && (
-        <AddColumn title="Edit Column" textButton="Edit" />
+        <AddColumn title="Edit Column" textButton="Edit" columnId={modalId} />
       )}
       {modal && modalType === "addCard" && (
-        <AddCard title="Add Card" textButton="Add" />
+        <AddCard title="Add Card" textButton="Add" columnId={modalId} />
       )}
-      {modal && modalType === "board" && (
-        <NewBoard componentTitle="Add Board" textButton="Add" />
+      {modal && modalType === "editBoard" && (
+        <NewBoard
+          componentTitle="Edit Board"
+          textButton="Edit"
+          boardId={modalId}
+        />
       )}
     </div>
   );
