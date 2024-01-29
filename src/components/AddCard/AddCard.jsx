@@ -9,7 +9,7 @@ import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
 import { addCard, updateCard } from "../../redux/operations";
 import { getUserToken } from "../../redux/selectors";
 
-export default function AddCard({ title, textButton, cardId }) {
+export default function AddCard({ title, textButton, cardId, columnId }) {
   const initialInput = {
     title: "",
     description: "",
@@ -17,7 +17,6 @@ export default function AddCard({ title, textButton, cardId }) {
   };
   const token = useSelector(getUserToken);
   //de modificat dupa ce avem totul aranjat pentru a vedea de unde luam columnId
-  const columnId = "65b4c957c5e64e41f3c4b707";
 
   //cardId de stocat intr-o variabila
   const dispatch = useDispatch();
@@ -39,6 +38,7 @@ export default function AddCard({ title, textButton, cardId }) {
   };
 
   const handleSubmit = (event) => {
+    console.log(event);
     event.preventDefault();
     try {
       dispatch(

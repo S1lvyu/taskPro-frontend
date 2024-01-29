@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import style from "./NewBoard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
-import { addBoard } from "../../redux/operations";
+import { addBoard, updateBoard } from "../../redux/operations";
 import { getUserToken } from "../../redux/selectors";
 import sprite from "../../assets/svg/symbol-defs.svg";
 import data from "../../assets/img/backgroundlmg/radiobutton/backgroundIcon/data";
 import { closeModal } from "../../redux/modalSlice";
 
-export default function NewBoard({ componentTitle, textButton }) {
+export default function NewBoard({ componentTitle, textButton, boardId }) {
   const [title, setTitle] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
   const [selectedBackgroundId, setSelectedBackgroundId] = useState("");
@@ -49,6 +49,25 @@ export default function NewBoard({ componentTitle, textButton }) {
     handleCloseModal();
   };
 
+  const handleEditBoard = (event) => {
+    event.preventDefault();
+    try {
+      dispatch(
+        updateBoard({
+          token,
+          boardId: boardId,
+          boardName: title,
+          icon: selectedIcon,
+          background: selectedBackgroundId,
+        })
+      );
+      handleCloseModal();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleFormSubmit =
+    componentTitle === "Add Board" ? handleCreateBoard : handleEditBoard;
   const renderIcons = () => {
     const icons = [
       "icon-project",
@@ -112,7 +131,7 @@ export default function NewBoard({ componentTitle, textButton }) {
         <h3>Background</h3>
         <div className={style.background_container}>{renderBackgrounds()}</div>
 
-        <ButtonPrimary onClick={handleCreateBoard}>{textButton}</ButtonPrimary>
+        <ButtonPrimary onClick={handleFormSubmit}>{textButton}</ButtonPrimary>
       </div>
     </div>
   );

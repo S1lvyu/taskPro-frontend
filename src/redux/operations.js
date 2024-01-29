@@ -134,7 +134,7 @@ export const addBoard = createAsyncThunk(
 
 export const updateBoard = createAsyncThunk(
   "boards/updateBoard",
-  async (token, boardId, boardName, icon, background, thunkAPI) => {
+  async ({ token, boardId, boardName, icon, background }, thunkAPI) => {
     try {
       const response = await editBoardApi(
         token,
@@ -151,7 +151,7 @@ export const updateBoard = createAsyncThunk(
 );
 export const removeBoard = createAsyncThunk(
   "boards/removeBoard",
-  async (token, boardId, thunkAPI) => {
+  async ({ token, boardId }, thunkAPI) => {
     try {
       const response = await deleteBoardApi(token, boardId);
       return response.data;
