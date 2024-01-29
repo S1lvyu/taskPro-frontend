@@ -6,7 +6,6 @@ import { addBoard } from "../../../redux/operations";
 import svgSprite from "../../../assets/svg/symbol-defs.svg";
 import { openModal, closeModal } from "../../../redux/modalSlice";
 import { getUserToken } from "../../../redux/selectors";
-
 //*NewBoard component with button*
 
 export default function NewBoardButton() {
@@ -24,7 +23,6 @@ export default function NewBoardButton() {
     dispatch(closeModal());
   };
 
-  // const [selectedSvg, setSelectedSvg] = useState(svgSprite + "#icon-plus");
   const token = useSelector(getUserToken);
   const handleNewBoard = (name, icon, background) => {
     console.log("Creating new board with name:", name);
@@ -39,15 +37,6 @@ export default function NewBoardButton() {
     dispatch(closeModal());
   };
 
-  // export default function NewBoardButton({ onNewBoard }) {
-  //   const [isOpen, setIsOpen] = useState(false);
-  //   const [name, setName] = useState("");
-
-  //   const handleNewBoard = (name) => {
-  //     onNewBoard(name);
-  //     setIsOpen(false);
-  //   };
-
   return (
     <>
       <h2 className={styles.title}> My boards</h2>
@@ -59,9 +48,10 @@ export default function NewBoardButton() {
           Create a <br />
           new board
         </p>
+
         <button className={styles.addbutton} onClick={handleOpenModal}>
-          <svg width="20" height="20" fill="#121212">
-            <use href={svgSprite + "#icon-plus"} />
+          <svg width="10" height="10" fill="#121212">
+            <use href={svgSprite + "#icon-plus1"} />
           </svg>
         </button>
       </div>

@@ -29,6 +29,10 @@
   border: none;
 }
 
+.addbutton svg {
+  fill: var(--black12-color);
+}
+
 .newboard {
   display: flex;
   align-items: center;

@@ -15,23 +15,10 @@ export default function BoardsList() {
     dispatch(getBoards(token));
   }, [dispatch, token]);
 
-  // const [boards, setBoards] = useState([]);
-  // const handleEditBoard = (index, newName, newSvg) => {
-  //   const newBoards = [...boards];
-  //   newBoards[index] = { name: newName, svg: newSvg };
-  //   setBoards(newBoards);
-  // };
-
-  // const handleDeleteBoard = (index) => {
-  //   const newBoards = [...boards];
-  //   newBoards.splice(index, 1);
-  //   setBoards(newBoards);
-  // };
-
   return (
     <div>
-      {boards.map((board, index) => (
-        <Board key={index} name={board.name} svg={board.svg} background={board.background} />
+      {boards.map((board) => (
+        <Board key={board.boardId} boardName={board.name} icon={board.svg} background={board.background} />
       ))}
     </div>
   );
