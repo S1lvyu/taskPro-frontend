@@ -2,12 +2,10 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Dashboard from "../../components/Dashboard/Dashboard";
-import AddColumn from "../../components/AddColumn/AddColumn";
 
-import { getBoardsData, selectModal } from "../../redux/selectors";
+import { getBoardsData } from "../../redux/selectors";
 
 const ScreensPage = () => {
-  const modal = useSelector(selectModal);
   const navigate = useNavigate();
   const { boardId } = useParams();
   const boards = useSelector(getBoardsData);
@@ -19,15 +17,7 @@ const ScreensPage = () => {
     }
   }, [board, navigate]);
 
-  return (
-    <>
-      {board && (
-        <Dashboard board={board}>
-          {modal && <AddColumn title="Add Column" textButton="Add" />}
-        </Dashboard>
-      )}
-    </>
-  );
+  return <>{board && <Dashboard board={board}></Dashboard>}</>;
 };
 
 export default ScreensPage;

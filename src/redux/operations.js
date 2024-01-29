@@ -256,6 +256,9 @@ export const removeCard = createAsyncThunk(
 export const moveCard = createAsyncThunk(
   "boards/moveCard",
   async ({ token, cardId, columnId }, thunkAPI) => {
+    console.log(cardId);
+    console.log(columnId);
+    console.log(token);
     try {
       const response = await moveCardApi(token, cardId, columnId);
       return response.data;

@@ -48,21 +48,21 @@ const BoardSlice = createSlice({
       .addCase(addBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(updateBoard.pending, handlePending)
       .addCase(updateBoard.rejected, handleRejected)
       .addCase(updateBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(removeBoard.pending, handlePending)
       .addCase(removeBoard.rejected, handleRejected)
       .addCase(removeBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(addColumn.pending, handlePending)
       .addCase(addColumn.rejected, handleRejected)
@@ -100,21 +100,21 @@ const BoardSlice = createSlice({
       .addCase(updateCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(removeCard.pending, handlePending)
       .addCase(removeCard.rejected, handleRejected)
       .addCase(removeCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(moveCard.pending, handlePending)
       .addCase(moveCard.rejected, handleRejected)
       .addCase(moveCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.boards = [...state.boards, ...action.payload.data];
+        state.boards = [...state.boards, action.payload.data];
       })
       .addCase(getBackgroundImages.pending, handlePending)
       .addCase(getBackgroundImages.rejected, handleRejected)
