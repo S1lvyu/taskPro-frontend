@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AddColumn from "../AddColumn/AddColumn";
 import { openModal } from "../../redux/modalSlice";
 import { getModalType, selectModal } from "../../redux/selectors";
+import NewBoard from "../NewBoard/NewBoard";
 export default function Dashboard({ children, board }) {
   const modal = useSelector(selectModal);
   const modalType = useSelector(getModalType);
@@ -45,6 +46,9 @@ export default function Dashboard({ children, board }) {
       </ButtonPrimary>
       {modal && modalType === "column" && (
         <AddColumn title="Add Column" textButton="Add" />
+      )}
+      {modal && modalType === "board" && (
+        <NewBoard componentTitle="Add Board" textButton="Add" />
       )}
     </div>
   );

@@ -7,7 +7,6 @@ import { getBoards } from "../../redux/operations";
 import { getBoardsData } from "../../redux/selectors";
 import { getUserToken } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../../components/Card/Card";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -40,8 +39,6 @@ export const Home = () => {
         >
           <Header />
           <Suspense fallback={<Loader />}>
-            <Card />
-
             <Outlet />
           </Suspense>
         </div>
