@@ -7,13 +7,14 @@ import { getUserToken } from "../../redux/selectors";
 import { removeCard } from "../../redux/operations";
 import { openModal } from "../../redux/modalSlice";
 
-export default function Card({ card }) {
+export default function Card({ card, onCardDrop }) {
   const dispatch = useDispatch();
   const token = useSelector(getUserToken);
+  console.log(typeof onCardDrop);
 
   const formatedData = new Date(card?.deadline).toLocaleDateString();
   const text =
-    Card?.labelColor === "#8FA1D0"
+    card?.labelColor === "#8FA1D0"
       ? "Low"
       : card?.labelColor === "#E09CB5"
       ? "Medium"
@@ -28,6 +29,7 @@ export default function Card({ card }) {
       console.error(error);
     }
   };
+
   const handleOpenMoveCardModal = () => {
     try {
       dispatch(openModal({ data: "popup", id: card._id, owner: card.owner }));
@@ -35,14 +37,26 @@ export default function Card({ card }) {
       console.error(error);
     }
   };
+
   const handleDeleteCard = () => {
     try {
       dispatch(removeCard({ token, cardId: card._id }));
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
   };
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onDrop={(event) => onCardDrop({ x: 0, y: event.clientY })}
+      onDragOver={handleDragOver}
+      draggable
+    >
       <div
         className={styles.card__color}
         style={{ background: `${card?.labelColor}` }}
