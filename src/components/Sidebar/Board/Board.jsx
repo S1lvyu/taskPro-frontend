@@ -35,7 +35,7 @@ export default function Board({ board }) {
 
   const handleDeleteBoard = () => {
     try {
-      const currentBoardId = board._id; // Salvați board._id într-o variabilă locală
+      const currentBoardId = board._id;
       console.log("board in timpul stergerii:", currentBoardId);
       dispatch(removeBoard({ token, boardId: currentBoardId }));
     } catch (error) {

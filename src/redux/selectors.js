@@ -20,3 +20,4 @@ export const getModalType = (state) => state.modal.data;
 export const getModalID = (state) => state.modal.id;
 export const getModalOwner = (state) => state.modal.owner;
 export const getTheme = (state) => state.modal.selectedTheme;
+export const getFilterColor = (state) => state.modal.filterColor;

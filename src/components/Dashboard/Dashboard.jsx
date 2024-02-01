@@ -11,12 +11,13 @@ import {
   getModalID,
   getModalOwner,
   getTheme,
+  getFilterColor,
 } from "../../redux/selectors";
 import NewBoard from "../NewBoard/NewBoard";
 import Column from "../Column/Column";
 import AddCard from "../AddCard/AddCard";
 import MoveCardPopUp from "../moveCardPopUp/MoveCardPopUp";
-
+import FilterModal from "../FilterModal/FilterModal";
 export default function Dashboard({ board }) {
   const modalId = useSelector(getModalID);
   const modal = useSelector(selectModal);
@@ -25,6 +26,11 @@ export default function Dashboard({ board }) {
   const dispatch = useDispatch();
   const handleOpenModal = () => {
     dispatch(openModal({ data: "column" }));
+  };
+  const filterColor = useSelector(getFilterColor);
+  const showIndicator = filterColor === "green" ? false : true;
+  const handleOpenFilterModal = () => {
+    dispatch(openModal({ data: "filter" }));
   };
   const theme = useSelector(getTheme);
 
@@ -47,9 +53,15 @@ export default function Dashboard({ board }) {
       <div className={styles.header__container}>
         <h1 className={styles.title}>{board.name}</h1>
         <p className={styles.filter}>
-          <svg width={18} height={18} className={styles.svg}>
+          <svg
+            width={18}
+            height={18}
+            className={styles.svg}
+            onClick={handleOpenFilterModal}
+          >
             <use href={svgSprite + "#icon-filter"} />
           </svg>
+          {showIndicator && <div className={styles.indicator}></div>}
           Filter
         </p>
       </div>
@@ -108,6 +120,7 @@ export default function Dashboard({ board }) {
           cardId={modalId}
         />
       )}
+      {modal && modalType === "filter" && <FilterModal />}
     </div>
   );
 }

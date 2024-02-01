@@ -6,10 +6,11 @@ import Card from "../Card/Card";
 import { openModal } from "../../redux/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { removeColumn } from "../../redux/operations";
-import { getUserToken, getTheme } from "../../redux/selectors";
+import { getUserToken, getTheme, getFilterColor } from "../../redux/selectors";
 export default function Column({ columns, cards, moveCardColumns }) {
   const token = useSelector(getUserToken);
   const theme = useSelector(getTheme);
+  const filterColor = useSelector(getFilterColor);
 
   const backgroundColor = theme === "Light" ? "#FDFDFD" : theme === "Violet" ? "rgba(214, 216, 255, 1)" : "#232323";
   const textColor = theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
@@ -33,6 +34,10 @@ export default function Column({ columns, cards, moveCardColumns }) {
       dispatch(removeColumn({ token, columnId: columns._id }));
     } catch (error) {}
   };
+  const filteredCards =
+    filterColor === "green"
+      ? cards
+      : cards.filter((card) => card.labelColor === filterColor);
   return (
     <div className={styles.column}>
       <div className={styles.header} style={{ backgroundColor: backgroundColor }}>
@@ -61,7 +66,7 @@ export default function Column({ columns, cards, moveCardColumns }) {
         </div>
       </div>
       <div className={styles.cards__container}>
-        {cards?.map((item) => {
+        {filteredCards?.map((item) => {
           return <Card key={item._id} card={item} />;
         })}
       </div>
