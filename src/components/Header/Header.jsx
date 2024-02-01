@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import styles from "./Header.module.css";
+import { UserInfo } from "./UserInfo/UserInfo";
 
 const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -59,13 +60,8 @@ const Header = () => {
               themeColor={currentColor}
             />
           )}
-          <div className={`${styles.profileData} ${styles[currentColor]}`}>
-            <div className={styles.userName}>Ivetta</div>
-            <div className={styles.userAvatar}>
-              <img src="profileImageUrl" alt="Profile" />
-            </div>
-          </div>
         </div>
+        <UserInfo />
       </div>
     </header>
   );

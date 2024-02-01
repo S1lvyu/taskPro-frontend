@@ -93,7 +93,7 @@ export const getUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "users/updateUser",
-  async (token, name, email, password, imageFile, thunkAPI) => {
+  async ({ token, name, email, password, imageFile }, thunkAPI) => {
     try {
       const response = await updateCurrentUserApi(
         token,
