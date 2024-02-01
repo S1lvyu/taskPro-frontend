@@ -125,7 +125,7 @@ const BoardSlice = createSlice({
       .addCase(removeColumn.pending, handlePending)
       .addCase(removeColumn.rejected, handleRejected)
       .addCase(removeColumn.fulfilled, (state, action) => {
-        const { deletedColumn, deletedCards } = action.payload.data;
+        const deletedColumn = action.payload.data;
         const boardId = deletedColumn.owner;
         const boardIndex = state.boards.findIndex(
           (board) => board._id === boardId
