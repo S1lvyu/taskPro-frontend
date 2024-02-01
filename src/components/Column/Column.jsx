@@ -11,14 +11,8 @@ export default function Column({ columns, cards, moveCardColumns }) {
   const token = useSelector(getUserToken);
   const theme = useSelector(getTheme);
 
-  const backgroundColor =
-    theme === "Light"
-      ? "#FDFDFD"
-      : theme === "Violet"
-      ? "rgba(214, 216, 255, 1)"
-      : "#232323";
-  const textColor =
-    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
+  const backgroundColor = theme === "Light" ? "#FDFDFD" : theme === "Violet" ? "rgba(214, 216, 255, 1)" : "#232323";
+  const textColor = theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const dispatch = useDispatch();
   const handleOpenAddCardModal = () => {
     try {
@@ -41,10 +35,7 @@ export default function Column({ columns, cards, moveCardColumns }) {
   };
   return (
     <div className={styles.column}>
-      <div
-        className={styles.header}
-        style={{ backgroundColor: backgroundColor }}
-      >
+      <div className={styles.header} style={{ backgroundColor: backgroundColor }}>
         <h1 className={styles.title} style={{ color: textColor }}>
           {columns?.name}
         </h1>
@@ -74,7 +65,7 @@ export default function Column({ columns, cards, moveCardColumns }) {
           return <Card key={item._id} card={item} />;
         })}
       </div>
-      <ButtonPrimary onClick={handleOpenAddCardModal}>
+      <ButtonPrimary className={styles.cards_button} onClick={handleOpenAddCardModal}>
         Add another card
       </ButtonPrimary>
     </div>
