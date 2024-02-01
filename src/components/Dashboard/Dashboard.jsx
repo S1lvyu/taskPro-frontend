@@ -5,20 +5,37 @@ import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
 import { useDispatch, useSelector } from "react-redux";
 import AddColumn from "../AddColumn/AddColumn";
 import { openModal } from "../../redux/modalSlice";
-import { getModalType, selectModal, getModalID } from "../../redux/selectors";
+import {
+  getModalType,
+  selectModal,
+  getModalID,
+  getModalOwner,
+  getTheme,
+} from "../../redux/selectors";
 import NewBoard from "../NewBoard/NewBoard";
 import Column from "../Column/Column";
 import AddCard from "../AddCard/AddCard";
+import MoveCardPopUp from "../moveCardPopUp/MoveCardPopUp";
 
 export default function Dashboard({ board }) {
   const modalId = useSelector(getModalID);
   const modal = useSelector(selectModal);
   const modalType = useSelector(getModalType);
+  const owner = useSelector(getModalOwner);
   const dispatch = useDispatch();
   const handleOpenModal = () => {
     dispatch(openModal({ data: "column" }));
-    console.log(modalId);
   };
+  const theme = useSelector(getTheme);
+
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   return (
     <div
       className={styles.container}
@@ -38,15 +55,26 @@ export default function Dashboard({ board }) {
       </div>
       <div className={styles.columns__container}>
         {board?.columns.map((item) => {
-          return <Column key={item._id} columns={item} cards={item.cards} />;
+          return (
+            <Column
+              key={item._id}
+              columns={item}
+              cards={item.cards}
+              moveCardColumns={board.columns}
+            />
+          );
         })}
         <div>
           <ButtonPrimary
             style={{
               width: "334px",
               background: "#121212",
-              color: "white",
+
               marginLeft: "24px",
+              backgroundColor: backgroundColor,
+              color: textColor,
+              fill: backgroundColor,
+              stroke: textColor,
             }}
             onClick={handleOpenModal}
           >
@@ -63,11 +91,21 @@ export default function Dashboard({ board }) {
       {modal && modalType === "addCard" && (
         <AddCard title="Add Card" textButton="Add" columnId={modalId} />
       )}
+      {modal && modalType === "card" && (
+        <AddCard title="Edit Card" textButton="Edit" cardId={modalId} />
+      )}
       {modal && modalType === "editBoard" && (
         <NewBoard
           componentTitle="Edit Board"
           textButton="Edit"
           boardId={modalId}
+        />
+      )}
+      {modal && modalType === "popup" && (
+        <MoveCardPopUp
+          cardOwner={owner}
+          columns={board.columns}
+          cardId={modalId}
         />
       )}
     </div>

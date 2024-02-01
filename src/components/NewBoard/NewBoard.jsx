@@ -3,7 +3,7 @@ import style from "./NewBoard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonPrimary } from "../ButtonPrimary/ButtonPrimary";
 import { addBoard, updateBoard } from "../../redux/operations";
-import { getUserToken } from "../../redux/selectors";
+import { getTheme, getUserToken } from "../../redux/selectors";
 import sprite from "../../assets/svg/symbol-defs.svg";
 import data from "../../assets/img/backgroundlmg/radiobutton/backgroundIcon/data";
 import { closeModal } from "../../redux/modalSlice";
@@ -14,6 +14,16 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
   const [selectedBackgroundId, setSelectedBackgroundId] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(getUserToken);
+  const theme = useSelector(getTheme);
+
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const handleCloseModal = () => {
     try {
       dispatch(closeModal());
@@ -89,6 +99,7 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
         onClick={() => handleIconSelect(icon)}
         className={style.icon__svg}
         tabIndex="0"
+        style={{ fill: backgroundColor, stroke: textColor }}
       >
         <use href={`${sprite}#${icon}`} />
       </svg>
@@ -110,10 +121,17 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
 
   return (
     <div className={style.overlay}>
-      <div className={style.board_container}>
+      <div
+        className={style.board_container}
+        style={{ backgroundColor: backgroundColor }}
+      >
         <div className={style.board_header}>
-          <h2>{componentTitle}</h2>
-          <button className={style.closeButton} onClick={handleCloseModal}>
+          <h2 style={{ color: textColor }}>{componentTitle}</h2>
+          <button
+            className={style.closeButton}
+            onClick={handleCloseModal}
+            style={{ color: textColor }}
+          >
             x
           </button>
         </div>
@@ -123,12 +141,12 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
           placeholder="Title"
           value={title}
           onChange={handleTitleChange}
-          style={style.input}
+          style={{ backgroundColor: backgroundColor, borderColor: textColor }}
         />
-        <h3>Icons</h3>
+        <h3 style={{ color: textColor }}>Icons</h3>
         <div className={style.icons_container}>{renderIcons()}</div>
 
-        <h3>Background</h3>
+        <h3 style={{ color: textColor }}>Background</h3>
         <div className={style.background_container}>{renderBackgrounds()}</div>
 
         <ButtonPrimary onClick={handleFormSubmit}>{textButton}</ButtonPrimary>

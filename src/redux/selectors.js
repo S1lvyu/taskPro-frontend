@@ -13,7 +13,10 @@ export const getBoardsData = (state) => state.boards.boards;
 export const getBackgroundImagesData = (state) => state.boards.backgroundImages;
 export const getBoardIsLoading = (state) => state.boards.isLoading;
 export const getBoardError = (state) => state.boards.error;
+export const getColumnsData = (state) => state.boards.columns;
 
 export const selectModal = (state) => state.modal.isOpen;
 export const getModalType = (state) => state.modal.data;
 export const getModalID = (state) => state.modal.id;
+export const getModalOwner = (state) => state.modal.owner;
+export const getTheme = (state) => state.modal.selectedTheme;

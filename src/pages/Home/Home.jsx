@@ -12,7 +12,13 @@ import {
 import { getUserToken } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import NewBoard from "../../components/NewBoard/NewBoard";
-
+import {
+  getUserError,
+  getBoardError,
+  getIsLoadingUser,
+  getBoardIsLoading,
+} from "../../redux/selectors";
+import { Message } from "../../components/Message/Message";
 export const Home = () => {
   const modal = useSelector(selectModal);
   const modalType = useSelector(getModalType);
@@ -21,7 +27,11 @@ export const Home = () => {
   const boards = useSelector(getBoardsData);
   const token = useSelector(getUserToken);
   const [hasRedirected, setHasRedirected] = useState(false);
-  console.log(boards);
+  const [isMessageOpen, setIsMessageOpen] = useState(false);
+  const userError = useSelector(getUserError);
+  const boardError = useSelector(getBoardError);
+  const isLoadingUser = useSelector(getIsLoadingUser);
+  const isLoadingBoard = useSelector(getBoardIsLoading);
   useEffect(() => {
     dispatch(getBoards(token));
   }, [dispatch, token]);
@@ -32,6 +42,15 @@ export const Home = () => {
       setHasRedirected(true);
     }
   }, [boards, hasRedirected, navigate]);
+  useEffect(() => {
+    if (userError || boardError) {
+      setIsMessageOpen(true);
+    }
+  }, [userError, boardError]);
+  const closeMessage = () => {
+    setIsMessageOpen(false);
+  };
+
   return (
     <>
       <div style={{ display: "flex", width: "100%", height: "100vh" }}>
@@ -49,6 +68,12 @@ export const Home = () => {
             <Outlet />
             {modal && modalType === "board" && (
               <NewBoard componentTitle="Add Board" textButton="Add" />
+            )}
+            {isMessageOpen && !isLoadingUser && !isLoadingBoard && (
+              <Message
+                closeMessage={closeMessage}
+                textMessage={userError || boardError}
+              />
             )}
           </Suspense>
         </div>

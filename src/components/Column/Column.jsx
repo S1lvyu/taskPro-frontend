@@ -6,10 +6,19 @@ import Card from "../Card/Card";
 import { openModal } from "../../redux/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { removeColumn } from "../../redux/operations";
-import { getUserToken } from "../../redux/selectors";
-export default function Column({ columns, cards }) {
+import { getUserToken, getTheme } from "../../redux/selectors";
+export default function Column({ columns, cards, moveCardColumns }) {
   const token = useSelector(getUserToken);
+  const theme = useSelector(getTheme);
 
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const dispatch = useDispatch();
   const handleOpenAddCardModal = () => {
     try {
@@ -32,14 +41,20 @@ export default function Column({ columns, cards }) {
   };
   return (
     <div className={styles.column}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{columns?.name}</h1>
+      <div
+        className={styles.header}
+        style={{ backgroundColor: backgroundColor }}
+      >
+        <h1 className={styles.title} style={{ color: textColor }}>
+          {columns?.name}
+        </h1>
         <div className={styles.btn__container}>
           <svg
             width={18}
             height={18}
             className={styles.icon}
             onClick={handleOpenEditColumnModal}
+            style={{ stroke: textColor, fill: backgroundColor }}
           >
             <use href={svgSprite + "#icon-pencil-01"} />
           </svg>
@@ -48,6 +63,7 @@ export default function Column({ columns, cards }) {
             height={18}
             className={styles.icon}
             onClick={handleDeleteColumn}
+            style={{ stroke: textColor, fill: backgroundColor }}
           >
             <use href={svgSprite + "#icon-trash-06"} />
           </svg>
@@ -55,14 +71,7 @@ export default function Column({ columns, cards }) {
       </div>
       <div className={styles.cards__container}>
         {cards?.map((item) => {
-          return (
-            <Card
-              key={item._id}
-              card={item}
-              cardOwner={item._id}
-              columns={columns}
-            />
-          );
+          return <Card key={item._id} card={item} />;
         })}
       </div>
       <ButtonPrimary onClick={handleOpenAddCardModal}>
