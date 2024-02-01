@@ -21,7 +21,7 @@ export const Home = () => {
   const boards = useSelector(getBoardsData);
   const token = useSelector(getUserToken);
   const [hasRedirected, setHasRedirected] = useState(false);
-  console.log(boards);
+
   useEffect(() => {
     dispatch(getBoards(token));
   }, [dispatch, token]);

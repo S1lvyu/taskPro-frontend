@@ -22,14 +22,16 @@ export default function Board({ board }) {
   const handleNavigateBoards = () => {
     navigate(`/home/${board._id}`);
   };
+
   const handleDeleteBoard = () => {
     try {
-      dispatch(removeBoard({ token, boardId: board._id }));
+      const currentBoardId = board._id; // Salvați board._id într-o variabilă locală
+      console.log("board in timpul stergerii:", currentBoardId);
+      dispatch(removeBoard({ token, boardId: currentBoardId }));
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
     <div
       className={styles.newboardcontainer}
@@ -40,7 +42,7 @@ export default function Board({ board }) {
       }}
       onClick={handleNavigateBoards}
     >
-      <svg style={{ width: "18", height: "18", fill: "var(--white-color)" }}>
+      <svg style={{ width: "18", height: "18", stroke: "var(--white-color)" }}>
         <use href={svgSprite + `#${board.icon}`} />
       </svg>
       <div className={styles.newboardname}>{board.name}</div>
@@ -49,14 +51,16 @@ export default function Board({ board }) {
           style={{
             width: "16",
             height: "16",
-            fill: "rgba(255, 255, 255, 0.5)",
+            stroke: "rgba(255, 255, 255, 0.5)",
           }}
         >
           <use href={svgSprite + "#icon-pencil-01"} />
         </svg>
       </button>
       <button className={styles.deletebutton} onClick={handleDeleteBoard}>
-        <svg style={{ width: "16", height: "16", fill: "var(--white-color)" }}>
+        <svg
+          style={{ width: "16", height: "16", stroke: "var(--white-color)" }}
+        >
           <use href={svgSprite + "#icon-trash-04"} />
         </svg>
       </button>

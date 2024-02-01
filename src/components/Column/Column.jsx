@@ -7,7 +7,7 @@ import { openModal } from "../../redux/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { removeColumn } from "../../redux/operations";
 import { getUserToken } from "../../redux/selectors";
-export default function Column({ columns, cards }) {
+export default function Column({ columns, cards, moveCardColumns }) {
   const token = useSelector(getUserToken);
 
   const dispatch = useDispatch();
@@ -55,14 +55,7 @@ export default function Column({ columns, cards }) {
       </div>
       <div className={styles.cards__container}>
         {cards?.map((item) => {
-          return (
-            <Card
-              key={item._id}
-              card={item}
-              cardOwner={item._id}
-              columns={columns}
-            />
-          );
+          return <Card key={item._id} card={item} />;
         })}
       </div>
       <ButtonPrimary onClick={handleOpenAddCardModal}>
