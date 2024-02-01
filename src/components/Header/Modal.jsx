@@ -1,12 +1,24 @@
 import React from "react";
 import styles from "./Modal.module.css";
+import ReactDOM from "react-dom";
 
 const Modal = ({ onClose, onColorChange }) => {
+  const modalRoot = document.getElementById("modal-root");
+  const modalContainer = document.createElement("div");
+
+  React.useEffect(() => {
+    modalRoot.appendChild(modalContainer);
+    return () => {
+      modalRoot.removeChild(modalContainer);
+    };
+  }, [modalContainer, modalRoot]);
+
   const handleColorChange = (color) => {
     onColorChange(color);
     onClose();
   };
-  return (
+
+  return ReactDOM.createPortal(
     <div>
       <div className={styles.overlay} onClick={onClose}></div>
       <div className={styles.modal}>
@@ -15,13 +27,13 @@ const Modal = ({ onClose, onColorChange }) => {
             onClick={() => handleColorChange("light")}
             className={styles.light}
           >
-            Light
+            Lumină
           </span>
           <span
             onClick={() => handleColorChange("dark")}
             className={styles.dark}
           >
-            Dark
+            Întuneric
           </span>
           <span
             onClick={() => handleColorChange("violet")}
@@ -31,7 +43,8 @@ const Modal = ({ onClose, onColorChange }) => {
           </span>
         </div>
       </div>
-    </div>
+    </div>,
+    modalContainer
   );
 };
 

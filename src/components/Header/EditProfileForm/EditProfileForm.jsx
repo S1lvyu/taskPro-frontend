@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../../redux/operations';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { getUser } from '../../../redux/selectors';
-import { updateUserSchema } from '../../../utils/validation';
-import defaultPhoto from '../../../assets/svg/symbol-defs.svg';
-import css from './EditProfileForm.module.css';
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../../redux/operations";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { getUser, getUserToken } from "../../../redux/selectors";
+import { updateUserSchema } from "../../../utils/validation";
+import defaultPhoto from "../../../assets/svg/symbol-defs.svg";
+import css from "./EditProfileForm.module.css";
 
 export const EditProfileForm = ({ onClose }) => {
   const user = useSelector(getUser);
-
+  const token = useSelector(getUserToken);
   const dispatch = useDispatch();
-  const [userPhoto, setUserPhoto] = useState(user.avatar);
-  const [userPreview, setUserPreview] = useState(user.avatar);
+  const [userPhoto, setUserPhoto] = useState(user?.avatar);
+  const [userPreview, setUserPreview] = useState(user?.avatar);
   const [showPassword, setShowPassword] = React.useState(false);
   const initialValues = {
-    name: user.name,
-    avatarUrl: user.avatar || defaultPhoto,
-    email: user.email,
-    password: user.password,
+    name: user?.name,
+    avatarUrl: user?.avatar || defaultPhoto,
+    email: user?.email,
+    password: user?.password,
   };
 
   const handlePhotoChange = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.addEventListener('change', event => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.addEventListener("change", (event) => {
       const file = event.target.files[0];
       const reader = new FileReader();
       setUserPhoto(file);
@@ -49,16 +49,22 @@ export const EditProfileForm = ({ onClose }) => {
       updateData.password = user.password;
     }
 
-    formData.append('avatar', userPhoto);
-    formData.append('updateInfo', JSON.stringify(updateData));
-    dispatch(updateUser(formData));
+    formData.append("avatar", userPhoto);
+    formData.append("updateInfo", JSON.stringify(updateData));
+    console.log(formData);
+    dispatch(
+      updateUser({
+        token,
+        formData,
+      })
+    );
 
     resetForm();
     onClose();
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   return (
@@ -78,7 +84,7 @@ export const EditProfileForm = ({ onClose }) => {
             />
           ) : (
             <svg width={68} height={68} className={css.svg}>
-              <use href={defaultPhoto + '#icon-Group-1456q'} />
+              <use href={defaultPhoto + "#icon-Group-1456q"} />
             </svg>
           )}
         </div>
@@ -114,8 +120,8 @@ export const EditProfileForm = ({ onClose }) => {
             id="password"
             name="password"
             placeholder="Password"
-            type={showPassword ? 'text' : 'password'}
-            style={{ position: 'relative' }}
+            type={showPassword ? "text" : "password"}
+            style={{ position: "relative" }}
           />
 
           <span className={css.eye} onClick={togglePasswordVisibility}>

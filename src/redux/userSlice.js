@@ -39,7 +39,7 @@ const UserSlice = createSlice({
     isAuthenticated: !!loadUserFromStorage(),
     isLoading: false,
     error: null,
-    userInfo: null,
+    userInfo: {},
     message: "",
   },
   reducers: {
@@ -106,10 +106,12 @@ const UserSlice = createSlice({
       .addCase(updateUser.pending, handlePending)
       .addCase(updateUser.rejected, handleRejected)
       .addCase(updateUser.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.isLoading = false;
         state.error = null;
 
-        state.userInfo = { ...state.userInfo, ...action.payload.data.user };
+        state.userInfo = { ...state.userInfo, ...action.payload };
+        console.log(state.userInfo);
       });
   },
 });
