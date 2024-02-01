@@ -1,6 +1,6 @@
 import React from "react";
 import styles from ".././NewBoardButton/newboardbutton.module.css";
-import { getModalType, getTheme } from "../../../redux/selectors";
+import { getTheme } from "../../../redux/selectors";
 import svgSprite from "../../../assets/svg/symbol-defs.svg";
 
 import { useDispatch } from "react-redux";
@@ -20,11 +20,10 @@ export default function NewBoardButton() {
   const textColor =
     theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const dispatch = useDispatch();
-  const modal = useSelector(getModalType);
+
   const handleOpenModal = () => {
     try {
       dispatch(openModal({ data: "board" }));
-      console.log(modal);
     } catch (error) {
       console.error(error);
     }

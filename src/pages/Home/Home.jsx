@@ -59,7 +59,7 @@ export const Home = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            width: "100%",
+            width: "100vw",
             height: "100%",
           }}
         >

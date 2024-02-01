@@ -106,12 +106,10 @@ const UserSlice = createSlice({
       .addCase(updateUser.pending, handlePending)
       .addCase(updateUser.rejected, handleRejected)
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.isLoading = false;
         state.error = null;
 
         state.userInfo = { ...state.userInfo, ...action.payload };
-        console.log(state.userInfo);
       });
   },
 });

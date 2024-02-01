@@ -45,7 +45,6 @@ export default function AddCard({ title, textButton, cardId, columnId }) {
   };
 
   const handleSubmit = (event) => {
-    console.log(event);
     event.preventDefault();
     try {
       dispatch(
@@ -66,7 +65,7 @@ export default function AddCard({ title, textButton, cardId, columnId }) {
 
   const handleEditSubmit = (event) => {
     event.preventDefault();
-    console.log(userInput);
+
     try {
       dispatch(
         updateCard({

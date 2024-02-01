@@ -21,7 +21,6 @@ export const UserInfo = () => {
   const handleCloseForm = () => {
     setShowEditForm(false);
   };
-  console.log(user);
 
   return (
     <div>

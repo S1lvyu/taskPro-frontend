@@ -43,7 +43,7 @@ export default function AddColumn({ title, textButton, columnId }) {
   };
   const handleEditSubmit = (event) => {
     event.preventDefault();
-    console.log(id);
+
     try {
       dispatch(updateColumn({ token, columnId: columnId, columnName }));
       handleCloseModal();

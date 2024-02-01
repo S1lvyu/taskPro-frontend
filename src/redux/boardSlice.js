@@ -22,7 +22,7 @@ const handlePending = (state) => {
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
-  console.log(action.payload);
+
   state.error = action.payload;
 };
 
@@ -76,9 +76,9 @@ const BoardSlice = createSlice({
       .addCase(removeBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log(action.payload.data);
+
         const removedBoardId = action.payload.data._id;
-        console.log(removedBoardId);
+
         state.boards = state.boards.filter(
           (board) => board._id !== removedBoardId
         );

@@ -153,7 +153,6 @@ export const removeBoard = createAsyncThunk(
   "boards/removeBoard",
   async ({ token, boardId }, thunkAPI) => {
     try {
-      console.log(boardId);
       const response = await deleteBoardApi(token, boardId);
       return response.data;
     } catch (error) {
@@ -165,13 +164,10 @@ export const removeBoard = createAsyncThunk(
 export const addColumn = createAsyncThunk(
   "boards/addColumn",
   async ({ token, boardId, columnName }, thunkAPI) => {
-    console.log(boardId);
-    console.log(columnName);
     try {
       const response = await addColumnApi(token, boardId, columnName);
       return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
@@ -258,9 +254,6 @@ export const removeCard = createAsyncThunk(
 export const moveCard = createAsyncThunk(
   "boards/moveCard",
   async ({ token, cardId, columnId }, thunkAPI) => {
-    console.log(cardId);
-    console.log(columnId);
-
     try {
       const response = await moveCardApi(token, cardId, columnId);
       return response.data;

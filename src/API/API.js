@@ -31,7 +31,7 @@ export const updateCurrentUserApi = (
   imageFile
 ) => {
   const formData = new FormData();
-  console.log(name);
+
   formData.append("name", name);
   formData.append("email", email);
   formData.append("password", password);
