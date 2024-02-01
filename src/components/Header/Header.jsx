@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import styles from "./Header.module.css";
 import { UserInfo } from "./UserInfo/UserInfo";
+import { getTheme } from "../../redux/selectors";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState("#ffffff");
-  const svgColorClass =
-    currentColor === "dark" ? styles.whiteColor : styles.blackColor;
 
+  const theme = useSelector(getTheme);
+
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const openModal = () => {
     setModalOpen(true);
   };
@@ -17,23 +26,21 @@ const Header = () => {
     setModalOpen(false);
   };
 
-  const handleColorChange = (color) => {
-    setCurrentColor(color);
-    closeModal();
-  };
-
   return (
     <header className={styles.header}>
-      <div className={`${styles.buttons_container} ${styles[currentColor]}`}>
+      <div
+        className={`${styles.buttons_container}`}
+        style={{ backgroundColor: backgroundColor }}
+      >
         {/* mobile button modal */}
         <div className={styles.modal_mobile}>
           <button className={styles.button_toggle} onClick={openModal}>
             <svg
-              className={`${svgColorClass}`}
               width="32"
               height="32"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
+              style={{ stroke: textColor }}
             >
               <path
                 fillRule="evenodd"
@@ -48,18 +55,13 @@ const Header = () => {
 
         <div className={styles.theme}>
           <button
-            className={`${styles.modalTrigger} ${styles[currentColor]}`}
+            className={`${styles.modalTrigger} `}
             onClick={openModal}
+            style={{ color: textColor }}
           >
             Theme
           </button>
-          {isModalOpen && (
-            <Modal
-              onClose={closeModal}
-              onColorChange={handleColorChange}
-              themeColor={currentColor}
-            />
-          )}
+          {isModalOpen && <Modal onClose={closeModal} />}
         </div>
         <UserInfo />
       </div>

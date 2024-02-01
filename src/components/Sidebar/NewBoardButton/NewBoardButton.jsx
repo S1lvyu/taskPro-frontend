@@ -1,6 +1,6 @@
 import React from "react";
 import styles from ".././NewBoardButton/newboardbutton.module.css";
-import { getModalType } from "../../../redux/selectors";
+import { getModalType, getTheme } from "../../../redux/selectors";
 import svgSprite from "../../../assets/svg/symbol-defs.svg";
 
 import { useDispatch } from "react-redux";
@@ -9,6 +9,16 @@ import { useSelector } from "react-redux";
 
 //*NewBoard component with button*
 export default function NewBoardButton() {
+  const theme = useSelector(getTheme);
+
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const dispatch = useDispatch();
   const modal = useSelector(getModalType);
   const handleOpenModal = () => {
@@ -22,12 +32,19 @@ export default function NewBoardButton() {
 
   return (
     <>
-      <h2 className={styles.title}> My boards</h2>
-      <svg width="212" height="2" fill="rgba(255, 255, 255, 0.1)">
+      <h2 className={styles.title} style={{ color: textColor }}>
+        {" "}
+        My boards
+      </h2>
+      <svg
+        width="212"
+        height="2"
+        style={{ fill: backgroundColor, stroke: textColor }}
+      >
         <use href={svgSprite + "#icon-grey-line"} />
       </svg>
       <div className={styles.newboard}>
-        <p className={styles.content}>
+        <p className={styles.content} style={{ color: textColor }}>
           Create a <br />
           new board
         </p>
@@ -42,7 +59,11 @@ export default function NewBoardButton() {
           </svg>
         </button>
       </div>
-      <svg width="212" height="2" fill="rgba(255, 255, 255, 0.1)">
+      <svg
+        width="212"
+        height="2"
+        style={{ fill: backgroundColor, stroke: textColor }}
+      >
         <use href={svgSprite + "#icon-grey-line"} />
       </svg>
     </>

@@ -10,6 +10,7 @@ import {
   selectModal,
   getModalID,
   getModalOwner,
+  getTheme,
 } from "../../redux/selectors";
 import NewBoard from "../NewBoard/NewBoard";
 import Column from "../Column/Column";
@@ -24,8 +25,17 @@ export default function Dashboard({ board }) {
   const dispatch = useDispatch();
   const handleOpenModal = () => {
     dispatch(openModal({ data: "column" }));
-    console.log(modalId);
   };
+  const theme = useSelector(getTheme);
+
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   return (
     <div
       className={styles.container}
@@ -59,8 +69,12 @@ export default function Dashboard({ board }) {
             style={{
               width: "334px",
               background: "#121212",
-              color: "white",
+
               marginLeft: "24px",
+              backgroundColor: backgroundColor,
+              color: textColor,
+              fill: backgroundColor,
+              stroke: textColor,
             }}
             onClick={handleOpenModal}
           >
