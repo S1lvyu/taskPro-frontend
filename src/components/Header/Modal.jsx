@@ -1,11 +1,17 @@
 import React from "react";
 import styles from "./Modal.module.css";
 import ReactDOM from "react-dom";
+import { selectTheme } from "../../redux/modalSlice";
+import { useDispatch } from "react-redux";
 
-const Modal = ({ onClose, onColorChange }) => {
+const Modal = ({ onClose }) => {
   const modalRoot = document.getElementById("modal-root");
   const modalContainer = document.createElement("div");
-
+  const dispatch = useDispatch();
+  const handleSelectTheme = (event) => {
+    dispatch(selectTheme(event.target.textContent));
+    onClose();
+  };
   React.useEffect(() => {
     modalRoot.appendChild(modalContainer);
     return () => {
@@ -13,32 +19,18 @@ const Modal = ({ onClose, onColorChange }) => {
     };
   }, [modalContainer, modalRoot]);
 
-  const handleColorChange = (color) => {
-    onColorChange(color);
-    onClose();
-  };
-
   return ReactDOM.createPortal(
     <div>
       <div className={styles.overlay} onClick={onClose}></div>
       <div className={styles.modal}>
         <div className={styles.container}>
-          <span
-            onClick={() => handleColorChange("light")}
-            className={styles.light}
-          >
-            Lumină
+          <span onClick={handleSelectTheme} className={styles.light}>
+            Light
           </span>
-          <span
-            onClick={() => handleColorChange("dark")}
-            className={styles.dark}
-          >
-            Întuneric
+          <span onClick={handleSelectTheme} className={styles.dark}>
+            Dark
           </span>
-          <span
-            onClick={() => handleColorChange("violet")}
-            className={styles.violet}
-          >
+          <span onClick={handleSelectTheme} className={styles.violet}>
             Violet
           </span>
         </div>

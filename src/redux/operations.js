@@ -40,7 +40,7 @@ export const verifyUser = createAsyncThunk(
       const response = await verifyAccountApi(verificationId);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -52,7 +52,7 @@ export const resendVerifyUser = createAsyncThunk(
       const response = await resendVerificationCodeApi(email);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -64,7 +64,7 @@ export const loginUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -75,7 +75,7 @@ export const logoutUser = createAsyncThunk(
       const response = await logoutApi(token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -86,7 +86,7 @@ export const getUser = createAsyncThunk(
       const response = await getCurrentUserApi(token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -104,7 +104,7 @@ export const updateUser = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -116,7 +116,7 @@ export const getBoards = createAsyncThunk(
       const response = await getBoardsApi(token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -127,7 +127,7 @@ export const addBoard = createAsyncThunk(
       const response = await addBoardApi(token, boardName, icon, background);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -145,7 +145,7 @@ export const updateBoard = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -157,7 +157,7 @@ export const removeBoard = createAsyncThunk(
       const response = await deleteBoardApi(token, boardId);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -171,7 +171,8 @@ export const addColumn = createAsyncThunk(
       const response = await addColumnApi(token, boardId, columnName);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -183,7 +184,7 @@ export const updateColumn = createAsyncThunk(
       const response = await editColumnApi(token, columnId, columnName);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -194,7 +195,7 @@ export const removeColumn = createAsyncThunk(
       const response = await deleteColumnApi(token, columnId);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -215,7 +216,7 @@ export const addCard = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -237,7 +238,7 @@ export const updateCard = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -249,7 +250,7 @@ export const removeCard = createAsyncThunk(
       const response = await deleteCardApi(token, cardId);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -264,7 +265,7 @@ export const moveCard = createAsyncThunk(
       const response = await moveCardApi(token, cardId, columnId);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -276,7 +277,7 @@ export const getBackgroundImages = createAsyncThunk(
       const response = await getBackgroundApi();
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.error);
     }
   }
 );

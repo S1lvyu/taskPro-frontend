@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/operations";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { getUser, getUserToken } from "../../../redux/selectors";
+import { getUser, getUserToken, getTheme } from "../../../redux/selectors";
 import { updateUserSchema } from "../../../utils/validation";
 import defaultPhoto from "../../../assets/svg/symbol-defs.svg";
 import css from "./EditProfileForm.module.css";
@@ -21,6 +21,15 @@ export const EditProfileForm = ({ onClose }) => {
     email: user?.email,
     password: user?.password,
   };
+  const theme = useSelector(getTheme);
+  const backgroundColor =
+    theme === "Light"
+      ? "#FDFDFD"
+      : theme === "Violet"
+      ? "rgba(214, 216, 255, 1)"
+      : "#232323";
+  const textColor =
+    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
 
   const handlePhotoChange = () => {
     const input = document.createElement("input");
@@ -73,8 +82,10 @@ export const EditProfileForm = ({ onClose }) => {
       validationSchema={updateUserSchema}
       onSubmit={handleSubmit}
     >
-      <Form className={css.form}>
-        <p className={css.form__title}>Edit profile</p>
+      <Form className={css.form} style={{ backgroundColor: backgroundColor }}>
+        <p className={css.form__title} style={{ color: textColor }}>
+          Edit profile
+        </p>
         <div className={css.photo} onClick={handlePhotoChange}>
           {userPreview ? (
             <img
@@ -83,7 +94,12 @@ export const EditProfileForm = ({ onClose }) => {
               alt="ProfilePhoto"
             />
           ) : (
-            <svg width={68} height={68} className={css.svg}>
+            <svg
+              width={68}
+              height={68}
+              className={css.svg}
+              style={{ color: textColor }}
+            >
               <use href={defaultPhoto + "#icon-Group-1456q"} />
             </svg>
           )}
@@ -97,6 +113,7 @@ export const EditProfileForm = ({ onClose }) => {
             id="name"
             name="name"
             placeholder="Name"
+            style={{ color: textColor }}
           />
           <ErrorMessage className={css.errors} name="name" component="div" />
         </div>
@@ -109,6 +126,7 @@ export const EditProfileForm = ({ onClose }) => {
             id="email"
             name="email"
             placeholder="Email"
+            style={{ color: textColor }}
           />
           <ErrorMessage className={css.errors} name="email" component="div" />
         </div>
@@ -121,10 +139,14 @@ export const EditProfileForm = ({ onClose }) => {
             name="password"
             placeholder="Password"
             type={showPassword ? "text" : "password"}
-            style={{ position: "relative" }}
+            style={{ color: textColor, position: "relative" }}
           />
 
-          <span className={css.eye} onClick={togglePasswordVisibility}>
+          <span
+            className={css.eye}
+            onClick={togglePasswordVisibility}
+            style={{ color: textColor }}
+          >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
           <ErrorMessage
