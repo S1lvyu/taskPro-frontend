@@ -33,3 +33,10 @@
   /* margin-right: 100px;
   margin-left: 25px; */
 }
+.line {
+  width: 5px;
+  height: 20px;
+}
+.active {
+  background-color: green;
+}
