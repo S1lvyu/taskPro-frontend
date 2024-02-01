@@ -8,6 +8,7 @@ const modalSlice = createSlice({
     id: null,
     owner: null,
     selectedTheme: "Light",
+    filterColor: "green",
   },
   reducers: {
     openModal: (state, action) => {
@@ -25,9 +26,13 @@ const modalSlice = createSlice({
     selectTheme: (state, action) => {
       state.selectedTheme = action.payload;
     },
+    selectFilterColor: (state, action) => {
+      state.filterColor = action.payload.selectedColor;
+    },
   },
 });
 
-export const { openModal, closeModal, selectTheme } = modalSlice.actions;
+export const { openModal, closeModal, selectTheme, selectFilterColor } =
+  modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;

@@ -10,7 +10,6 @@ import { openModal } from "../../redux/modalSlice";
 export default function Card({ card, onCardDrop }) {
   const dispatch = useDispatch();
   const token = useSelector(getUserToken);
-  console.log(typeof onCardDrop);
 
   const formatedData = new Date(card?.deadline).toLocaleDateString();
   const text =
