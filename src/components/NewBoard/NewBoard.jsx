@@ -16,14 +16,8 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
   const token = useSelector(getUserToken);
   const theme = useSelector(getTheme);
 
-  const backgroundColor =
-    theme === "Light"
-      ? "#FDFDFD"
-      : theme === "Violet"
-      ? "rgba(214, 216, 255, 1)"
-      : "#232323";
-  const textColor =
-    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
+  const backgroundColor = theme === "Light" ? "#FDFDFD" : theme === "Violet" ? "rgba(214, 216, 255, 1)" : "#232323";
+  const textColor = theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
   const handleCloseModal = () => {
     try {
       dispatch(closeModal());
@@ -76,8 +70,7 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
       console.error(error);
     }
   };
-  const handleFormSubmit =
-    componentTitle === "Add Board" ? handleCreateBoard : handleEditBoard;
+  const handleFormSubmit = componentTitle === "Add Board" ? handleCreateBoard : handleEditBoard;
   const renderIcons = () => {
     const icons = [
       "icon-project",
@@ -109,29 +102,17 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
   const renderBackgrounds = () => {
     return data.map((item) => (
       <div key={item.id} onClick={() => handleBackgroundSelect(item.imgLink)}>
-        <img
-          className={style.background_icon}
-          src={item.image}
-          alt="Background"
-          tabIndex="0"
-        />
+        <img className={style.background_icon} src={item.image} alt="Background" tabIndex="0" />
       </div>
     ));
   };
 
   return (
     <div className={style.overlay}>
-      <div
-        className={style.board_container}
-        style={{ backgroundColor: backgroundColor }}
-      >
+      <div className={style.board_container} style={{ backgroundColor: backgroundColor }}>
         <div className={style.board_header}>
           <h2 style={{ color: textColor }}>{componentTitle}</h2>
-          <button
-            className={style.closeButton}
-            onClick={handleCloseModal}
-            style={{ color: textColor }}
-          >
+          <button className={style.closeButton} onClick={handleCloseModal} style={{ color: textColor }}>
             x
           </button>
         </div>
@@ -141,7 +122,7 @@ export default function NewBoard({ componentTitle, textButton, boardId }) {
           placeholder="Title"
           value={title}
           onChange={handleTitleChange}
-          style={{ backgroundColor: backgroundColor, borderColor: textColor }}
+          style={{ color: textColor, backgroundColor: backgroundColor, borderColor: textColor }}
         />
         <h3 style={{ color: textColor }}>Icons</h3>
         <div className={style.icons_container}>{renderIcons()}</div>
