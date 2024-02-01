@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 export const Sidebar = () => {
   const boards = useSelector(getBoardsData);
+
   return (
     <>
       <div className={styles.sidebarcontainer}>

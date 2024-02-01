@@ -1,17 +1,15 @@
 import React from "react";
-import MoveCardPopUp from "../moveCardPopUp/MoveCardPopUp";
+
 import { useSelector, useDispatch } from "react-redux";
 import svgSprite from "../../assets/svg/symbol-defs.svg";
 import styles from "./Card.module.css";
-import { selectModal, getModalType, getUserToken } from "../../redux/selectors";
+import { getUserToken } from "../../redux/selectors";
 import { removeCard } from "../../redux/operations";
 import { openModal } from "../../redux/modalSlice";
-import AddCard from "../AddCard/AddCard";
-export default function Card({ card, cardOwner, columns }) {
+
+export default function Card({ card }) {
   const dispatch = useDispatch();
   const token = useSelector(getUserToken);
-  const modal = useSelector(selectModal);
-  const modalType = useSelector(getModalType);
 
   const formatedData = new Date(card?.deadline).toLocaleDateString();
   const text =
@@ -25,14 +23,14 @@ export default function Card({ card, cardOwner, columns }) {
 
   const handleOpenEditModal = () => {
     try {
-      dispatch(openModal({ data: "card" }));
+      dispatch(openModal({ data: "card", id: card._id }));
     } catch (error) {
       console.error(error);
     }
   };
   const handleOpenMoveCardModal = () => {
     try {
-      dispatch(openModal({ data: "popup" }));
+      dispatch(openModal({ data: "popup", id: card._id, owner: card.owner }));
     } catch (error) {
       console.error(error);
     }
@@ -96,22 +94,6 @@ export default function Card({ card, cardOwner, columns }) {
           </div>
         </div>
       </div>
-      {modal && modalType === "card" && (
-        <AddCard
-          title="Edit Card"
-          textButton="Edit"
-          // de modificat cu o valore reala
-          cardId={card._id}
-        />
-      )}
-      {modal && modalType === "popup" && (
-        <MoveCardPopUp
-          // de modificat  cu o valoare reala
-          cardOwner={cardOwner}
-          columns={columns}
-          cardId={card._id}
-        />
-      )}
     </div>
   );
 }

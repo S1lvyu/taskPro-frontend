@@ -153,6 +153,7 @@ export const removeBoard = createAsyncThunk(
   "boards/removeBoard",
   async ({ token, boardId }, thunkAPI) => {
     try {
+      console.log(boardId);
       const response = await deleteBoardApi(token, boardId);
       return response.data;
     } catch (error) {
@@ -258,7 +259,7 @@ export const moveCard = createAsyncThunk(
   async ({ token, cardId, columnId }, thunkAPI) => {
     console.log(cardId);
     console.log(columnId);
-    console.log(token);
+
     try {
       const response = await moveCardApi(token, cardId, columnId);
       return response.data;
