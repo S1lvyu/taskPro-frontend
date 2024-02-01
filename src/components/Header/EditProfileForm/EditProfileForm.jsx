@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/operations";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { getUser, getUserToken, getTheme } from "../../../redux/selectors";
 import { updateUserSchema } from "../../../utils/validation";
 import defaultPhoto from "../../../assets/svg/symbol-defs.svg";
@@ -22,14 +22,8 @@ export const EditProfileForm = ({ onClose }) => {
     password: user?.password,
   };
   const theme = useSelector(getTheme);
-  const backgroundColor =
-    theme === "Light"
-      ? "#FDFDFD"
-      : theme === "Violet"
-      ? "rgba(214, 216, 255, 1)"
-      : "#232323";
-  const textColor =
-    theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
+  const backgroundColor = theme === "Light" ? "#FDFDFD" : theme === "Violet" ? "rgba(214, 216, 255, 1)" : "#232323";
+  const textColor = theme === "Light" ? "rgba(22, 22, 22, 1)" : "rgba(255, 255, 255, 1)";
 
   const handlePhotoChange = () => {
     const input = document.createElement("input");
@@ -77,29 +71,16 @@ export const EditProfileForm = ({ onClose }) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={updateUserSchema}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} validationSchema={updateUserSchema} onSubmit={handleSubmit}>
       <Form className={css.form} style={{ backgroundColor: backgroundColor }}>
         <p className={css.form__title} style={{ color: textColor }}>
           Edit profile
         </p>
         <div className={css.photo} onClick={handlePhotoChange}>
           {userPreview ? (
-            <img
-              className={css.photo__img}
-              src={userPreview}
-              alt="ProfilePhoto"
-            />
+            <img className={css.photo__img} src={userPreview} alt="ProfilePhoto" />
           ) : (
-            <svg
-              width={68}
-              height={68}
-              className={css.svg}
-              style={{ color: textColor }}
-            >
+            <svg width={68} height={68} className={css.svg} style={{ color: textColor }}>
               <use href={defaultPhoto + "#icon-Group-1456q"} />
             </svg>
           )}
@@ -142,18 +123,10 @@ export const EditProfileForm = ({ onClose }) => {
             style={{ color: textColor, position: "relative" }}
           />
 
-          <span
-            className={css.eye}
-            onClick={togglePasswordVisibility}
-            style={{ color: textColor }}
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          <span className={css.eye} onClick={togglePasswordVisibility} style={{ color: textColor }}>
+            {/* {showPassword ? <FaEyeSlash /> : <FaEye />} */}
           </span>
-          <ErrorMessage
-            className={css.errors}
-            name="password"
-            component="div"
-          />
+          <ErrorMessage className={css.errors} name="password" component="div" />
         </div>
 
         <button className={css.form__button} type="submit">

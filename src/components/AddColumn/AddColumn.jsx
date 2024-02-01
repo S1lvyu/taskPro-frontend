@@ -46,6 +46,7 @@ export default function AddColumn({ title, textButton, columnId }) {
     console.log(id);
     try {
       dispatch(updateColumn({ token, columnId: columnId, columnName }));
+      handleCloseModal();
     } catch (error) {
       console.error(error);
     }
